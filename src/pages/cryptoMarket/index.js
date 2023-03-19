@@ -1,7 +1,6 @@
 import CryptoList from "@/src/components/CryptoList";
 import { getData, getSomeData } from "@/src/services/serviceData";
-import { useRouter } from "next/router";
-import { useEffect } from "react";
+
 
 const index = ({ coin }) => {
   // const [cryptoInfo] = coin;

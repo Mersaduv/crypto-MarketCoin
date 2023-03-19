@@ -1,7 +1,6 @@
 import ExgangesList from "@/src/components/ExgangesList";
 import { getExchanges } from "@/src/services/serviceData";
-import { useRouter } from "next/router";
-import { useEffect } from "react";
+
 
 const index = ({ coin }) => {
   // const [cryptoInfo] = coin;

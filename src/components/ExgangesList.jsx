@@ -4,15 +4,15 @@ import { useDispatch, useSelector } from "react-redux";
 import ExchangesItem from "./ExchangesItem";
 
 const ExgangesList = ({ data }) => {
-  const dispatch = useDispatch();
-  const { loading, error } = useSelector((state) => state.cryptos);
+  // const dispatch = useDispatch();
+  // const { loading, error } = useSelector((state) => state.cryptos);
 
   // useEffect(() => {
   //   dispatch(fetchCoins());
   // }, [dispatch]);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
+  // if (loading) return <p>Loading...</p>;
+  // if (error) return <p>Error: {error}</p>;
 
   return (
     <ul>

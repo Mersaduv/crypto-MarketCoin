@@ -1,12 +1,12 @@
 import Footer from "../components/Footers";
 import Header from "../components/Header";
-import Navbar from "../components/Navbar";
+
 
 export default function Layout({ children }) {
   return (
-    <div>
+    <div className="mx-auto max-w-6xl px-2">
       <Header />
-      <Navbar />
+  
       {children}
       <Footer />
     </div>

@@ -6,12 +6,11 @@ const index = ({ coin }) => {
   const [cryptoDetail] = coin;
   return (
     <div>
-      cc
       <h1>
         {cryptoDetail.name} ({cryptoDetail.symbol})
       </h1>
-      <img src={cryptoDetail.image} alt={cryptoDetail.name} />
-      <p>Current Price: {cryptoDetail.current_price} USD</p>
+      {/* <img src={cryptoDetail.image} alt={cryptoDetail.name} /> */}
+      <div>Current Price: {cryptoDetail.current_price} USD</div>
     </div>
   );
 };

@@ -1,14 +1,18 @@
-import Link from "next/link";
+// import Link from "next/link";
 import CryptoList from "../components/CryptoList";
-import { fetchCoins } from "../redux/cryptoSlice/cryptoSlice";
+import SectionHead from "../components/SectionHead";
+import TrendingCoins from "../components/TrendingCoins";
+// import { fetchCoins } from "../redux/cryptoSlice/cryptoSlice";
 
 import { getData } from "../services/serviceData";
 export default function Home({ data }) {
   return (
     <>
-      <div className="text-3xl font-bold underline">Market</div>
+      <div className="w-2/3">
+        <SectionHead />
+      </div>
       <div>
-
+        <CryptoList data={data} />
       </div>
     </>
   );

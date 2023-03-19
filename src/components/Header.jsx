@@ -1,9 +1,11 @@
+import Navbar from "./Navbar";
+
 const Header = () => {
-    return ( 
-        <div>
-            HEADERs
-        </div>
-     );
-}
- 
+  return (
+    <div>
+      <Navbar />
+    </div>
+  );
+};
+
 export default Header;
