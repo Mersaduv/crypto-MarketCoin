@@ -1,5 +1,5 @@
-import { createTheme, ThemeProvider } from "@mui/material";
-import { createContext, useMemo, useState } from "react";
+import { createTheme, ThemeProvider } from "@mui/material"
+import { createContext, useMemo, useState } from "react"
 
 export const ColorModeContext = createContext({
     toggleMode: () => { },
@@ -20,10 +20,10 @@ export const ColorContextProvider = ({ children }) => {
         breakpoints: {
             values: {
                 xs: 0,
-                sm: 450,
-                md: 600,
-                lg: 900,
-                xl: 1024
+                sm: 640,
+                md: 768,
+                lg: 1024,
+                xl: 1154
             }
         },
         palette: {

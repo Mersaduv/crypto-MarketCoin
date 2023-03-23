@@ -2,6 +2,7 @@ import axios from "axios";
 import {
   AppBar,
   Autocomplete,
+  createMuiTheme,
   makeStyles,
   Stack,
   TextField,
@@ -30,53 +31,23 @@ import { FiSearch } from "react-icons/fi";
 import StarIcon from "@mui/icons-material/Star";
 import SearchAutoComplate from "./SearchAutoComplate";
 import TrendingCoins from "./TrendingCoins";
-// const Search = styled("div")(({ theme }) => ({
-//   position: "relative",
-//   borderRadius: theme.shape.borderRadius,
-//   backgroundColor: "rgb(239, 242, 245)",
-//   "&:hover": {
-//     backgroundColor: alpha(theme.palette.common.white, 0.25),
-//   },
-//   marginLeft: 0,
-//   height: "30px",
-//   width: "100%",
-//   [theme.breakpoints.up("sm")]: {
-//     marginLeft: theme.spacing(1),
-//     width: "auto",
-//   },
-// }));
+import BasicModal from "./modals/BasicModal";
+import { Dialog, Transition } from "@headlessui/react";
 
-// const StyledInputBase = styled(InputBase)(({ theme }) => ({
-//   color: "inherit",
-//   "& .MuiInputBase-input": {
-//     padding: theme.spacing(1, 1, 1, 0),
-//     // vertical padding + font size from searchIcon
-//     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-//     transition: theme.transitions.create("width"),
-//     width: "100%",
-//     height: "30px",
-//   },
-// }));
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-//     display: "flex",
-//     alignItems: "center",
-//     fontSize: theme.typography.pxToRem(14),
-//     fontWeight: theme.typography.fontWeightMedium,
-//     color: theme.palette.text.primary,
-//     "&:hover": {
-//       backgroundColor: theme.palette.grey[100],
-//       boxShadow: theme.shadows[1],
-//     },
-//     borderRadius: theme.shape.borderRadius,
-//     cursor: "pointer",
-//   },
-// }));
 const Navbar = () => {
   const [profileModal, setProfileModal] = useState(false);
   const [profileSignUp, setprofileSignUp] = useState(true);
   const [profileLogIn, setprofileLogIn] = useState(false);
   const [globalMetrics, setGlobalMetrics] = useState(null);
+
+  const [openMenu, setOpenMenu] = useState(false);
+
+  const menuItems = [
+    { id: 1, name: "Home", path: "/" },
+    { id: 2, name: "Markets", path: "/markets" },
+    { id: 3, name: "Exchange", path: "/exchange" },
+    { id: 4, name: "Watchlist", path: "/watchList" },
+  ];
 
   useEffect(() => {
     axios
@@ -109,7 +80,7 @@ const Navbar = () => {
     <div className="border-y flex flex-col-reverse md2:flex-col">
       {/* header show price market  */}
       <div className="flex justify-between w-full  py-1.5 border-b">
-        <div className="flex flex-1 whitespace-nowrap overflow-y-hidden  overflow-x-auto gap-x-4">
+        <div className="flex flex-1 whitespace-nowrap   overflow-x-auto gap-x-4">
           <div className="flex items-center gap-x-4">
             <div className="flex whitespace-nowrap  text-xs gap-x-2">
               <div>رمزارزها: </div>
@@ -242,7 +213,7 @@ const Navbar = () => {
       </div>
 
       <Box display="flex" alignItems="center">
-        <Box display="flex" width="100%" gap={4} alignItems="center">
+        <Box display="flex" width="100%" alignItems="center">
           <Box
             display="flex"
             alignItems="center"
@@ -274,8 +245,13 @@ const Navbar = () => {
               alignItems="center"
               gap={3}
             >
-              <FiSearch size="22px" />
-              <MenuIcon className="cursor-pointer" />
+              {/* <FiSearch size="22px" /> */}
+              <BasicModal />
+              <div className="flex pr-3 lg:hidden">
+                <button type="button" onClick={() => setOpenMenu(true)}>
+                  <MenuIcon />
+                </button>
+              </div>
             </Box>
           </Box>
         </Box>
@@ -288,21 +264,81 @@ const Navbar = () => {
             gap: 2,
           }}
         >
-          {/* <Typography
-            sx={{ display: "flex", padding: "4px", whiteSpace: "nowrap" }}
-            component="span"
-          >
-            <StarIcon fontSize="small" />
-            <Typography variant="subtitle2">
-              <Link href="/watchlist">فهرست شما</Link>
-            </Typography>
-          </Typography> */}
           {/* search BOX  */}
           <div className="flex">
             <SearchAutoComplate />
           </div>
         </Box>
       </Box>
+
+      {/* Responsive Menu */}
+      <Transition.Root show={openMenu} as={React.Fragment}>
+        <Dialog
+          as="div"
+          className="relative z-40 lg:hidden"
+          onClose={setOpenMenu}
+        >
+          {/* dark opacity the screen for showing the menu */}
+          <Transition.Child
+            as={React.Fragment}
+            enter="transition-opacity ease-linear duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="transition-opacity ease-linear duration-300"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div className="fixed inset-0 bg-black bg-opacity-50" />
+          </Transition.Child>
+
+          {/* menu */}
+          <div className="fixed inset-0 z-40 flex">
+            <Transition.Child
+              as={React.Fragment}
+              enter="transition ease-in-out duration-300 transform"
+              enterFrom="-translate-x-full"
+              enterTo="translate-x-0"
+              leave="transition ease-in-out duration-300 transform"
+              leaveFrom="translate-x-0"
+              leaveTo="-translate-x-full"
+            >
+              <Dialog.Panel className="relative flex  flex-col overflow-y-auto bg-white dark:bg-gray-800 shadow-xl w-screen">
+                {/* header  */}
+                <div className=" sticky top-0 pl-2 flex items-center justify-between ">
+                  {/* close button */}
+                  <div className="flex flex-row-reverse p-3">
+                    <button type="button" onClick={() => setOpenMenu(false)}>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="w-8 h-6"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M6 18L18 6M6 6l12 12"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                  {/* Link logo*/}
+                  <Link className="font-bold" href="/">
+                    MarketCoin
+                  </Link>
+                </div>
+                <div className="flex flex-col">
+                  {/* <Cryptocurrency />
+                  <Exchanges />
+                  <Projects /> */}
+                </div>
+              </Dialog.Panel>
+            </Transition.Child>
+          </div>
+        </Dialog>
+      </Transition.Root>
     </div>
   );
 };

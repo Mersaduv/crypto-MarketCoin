@@ -8,8 +8,10 @@ import TrendBeta from "./TrendBeta";
 import { FcFlashOn } from "react-icons/fc";
 import StarIcon from "@mui/icons-material/Star";
 import useAutocomplete from "@mui/base/useAutocomplete";
-
+import { FiSearch } from "react-icons/fi";
 import { Typography } from "@mui/material";
+import { useEnterState } from "../context/enterState";
+
 const Input = styled("input")(({ theme }) => ({
   width: 200,
   backgroundColor: theme.palette.mode === "light" ? "#fff" : "#000",
@@ -39,6 +41,8 @@ const Listbox = styled("ul")(({ theme }) => ({
 }));
 
 export default function SearchAutoComplate() {
+  const { openEnter, setOpenEnter } = useEnterState();
+
   const [dataCoin, setDataCoin] = React.useState([]);
   const [highlightedIndex, setHighlightedIndex] = React.useState(0); // initialize with a default value
   const [isOpen, setIsOpen] = React.useState(false); // add state for list visibility
@@ -66,7 +70,7 @@ export default function SearchAutoComplate() {
   } = useAutocomplete({
     id: "use-autocomplete-demo",
     options: dataCoin || [],
-    getOptionLabel: (option) => option.name || "" || selectedOptions.name,
+    getOptionLabel: (option) => option.name || "",
   });
   // if (selectedOptions) {
   //   console.log(selectedOptions);
@@ -85,6 +89,11 @@ export default function SearchAutoComplate() {
           "/cryptoMarket/[coinId]",
           `/cryptoMarket/${selectedOption.id}`
         );
+        if (openEnter) {
+          setHighlightedIndex(selectedOption.id);
+          setOpenEnter((prev) => !prev);
+          console.log("Enter");
+        }
         setIsOpen(false);
       }
 
@@ -110,11 +119,11 @@ export default function SearchAutoComplate() {
     }
   };
   return (
-    <div className="autoComplate flex items-center gap-x-2">
-      <Link href="/watchlist">
+    <div className="autoComplate w-full flex items-center gap-x-2">
+      <Link href="/watchList">
         <Typography
           sx={{
-            display: "flex",
+            display: { xs: "none", md: "flex" },
             padding: "6px",
             whiteSpace: "nowrap",
             gap: "2px",
@@ -131,9 +140,13 @@ export default function SearchAutoComplate() {
           <Typography variant="subtitle2">فهرست شما</Typography>
         </Typography>
       </Link>
-      <div {...getRootProps()}>
+      <div
+        id="autoComplated"
+        className="w-full bg-gray-100 hover:outline-blue-200 hover:outline border flex items-center mr-6 md:mr-0"
+        {...getRootProps()}
+      >
         <Input
-          className="px-2 pb-2 pt-1"
+          className="px-2 pb-2 pt-1 w-full outline-none focus:border-none focus:outline-none mr-3 md:mr-0"
           placeholder="جستجو..."
           onBlur={(event) => {
             onBlur(event);
@@ -147,63 +160,121 @@ export default function SearchAutoComplate() {
             setIsOpen(true); // open the list when the input is focused
           }}
           onKeyDown={handleKeyDown}
+          // onClose={handleClose}
           {...inputProps}
         />
+        <FiSearch className="mx-1" size={18} />
       </div>
       {isOpen && groupedOptions.length > 0 ? (
-        <Listbox
-          className="flex absolute shadow border-none flex-col w-80 top-10 left-0 "
-          {...getListboxProps()}
-        >
-          <div
-            id="trend"
-            className="flex items-center gap-x-1 p-2 mr-1 font-bold "
+        <>
+          <Listbox
+            className="hidden md:flex  absolute shadow border-none flex-col w-80 top-10 left-0 "
+            {...getListboxProps()}
           >
-            <div>محبوبترین</div>
-            <FcFlashOn size={25} />
-          </div>
-          {groupedOptions.map((option, index = option.id) => (
-            <li
-              key={option.id}
-              {...getOptionProps({
-                option,
-                index: option.id,
-              })}
-              className={
-                highlightedIndex === index
-                  ? "flex hover:bg-gray-100 cursor-pointer p-2 mr-1 justify-between bg-gray-100"
-                  : "flex hover:bg-gray-100 cursor-pointer p-2 mr-1 justify-between"
-              }
-              onMouseMove={() => {
-                setHighlightedIndex(index);
-              }}
-              onClick={() => {
-                // Same logic as handleKeyDown function when "Enter" key is pressed
-                router.push(
-                  "/cryptoMarket/[coinId]",
-                  `/cryptoMarket/${option.id}`
-                );
-                event.target.value = option.name;
-                setSelectedOption(option);
-                setIsOpen(false); // close the list when an item is clicked
-                setHighlightedIndex(0);
-              }}
+            <div
+              id="trend"
+              className="flex items-center gap-x-1 p-2 mr-1 font-bold "
             >
-              <div className="flex flex-row gap-x-2">
-                <img
-                  src={option.image}
-                  alt="icon"
-                  className="rounded-full h-7 w-7"
-                />
-                <div className="flex gap-x-1.5">
-                  {option.name}{" "}
-                  <div className="text-gray-500">{option.symbol}</div>
-                </div>
-              </div>{" "}
-              <div>#{option.market_cap_rank}</div>
-            </li>
-          ))}
-        </Listbox>
+              <div>محبوبترین</div>
+              <FcFlashOn size={25} />
+            </div>
+            {groupedOptions.map((option, index = option.id) => (
+              <li
+                key={option.id}
+                {...getOptionProps({
+                  option,
+                  index: option.id,
+                })}
+                className={
+                  highlightedIndex === index
+                    ? "flex hover:bg-gray-100 cursor-pointer p-2 mr-1 justify-between bg-gray-100"
+                    : "flex hover:bg-gray-100 cursor-pointer p-2 mr-1 justify-between"
+                }
+                onMouseMove={() => {
+                  setHighlightedIndex(index);
+                }}
+                onClick={() => {
+                  // Same logic as handleKeyDown function when "Enter" key is pressed
+                  router.push(
+                    "/cryptoMarket/[coinId]",
+                    `/cryptoMarket/${option.id}`
+                  );
+                  setSelectedOption(option);
+                  setIsOpen(false); // close the list when an item is clicked
+                  setHighlightedIndex(0);
+                }}
+              >
+                <div className="flex flex-row gap-x-2">
+                  <img
+                    src={option.image}
+                    alt="icon"
+                    className="rounded-full h-7 w-7"
+                  />
+                  <div className="flex gap-x-1.5">
+                    {option.name}{" "}
+                    <div className="text-gray-500">{option.symbol}</div>
+                  </div>
+                </div>{" "}
+                <div>#{option.market_cap_rank}</div>
+              </li>
+            ))}
+          </Listbox>
+
+          {/* mobile first uL list  */}
+          <Listbox
+            className="flex md:hidden  absolute shadow border-none flex-col w-full top-[80px] left-0 "
+            {...getListboxProps()}
+          >
+            <div
+              id="trend"
+              className="flex items-center gap-x-1 p-2 mr-1 font-bold "
+            >
+              <div>محبوبترین</div>
+              <FcFlashOn size={25} />
+            </div>
+            {groupedOptions.map((option, index = option.id) => (
+              <li
+                key={option.id}
+                {...getOptionProps({
+                  option,
+                  index: option.id,
+                })}
+                className={
+                  highlightedIndex === index
+                    ? "flex hover:bg-gray-100 cursor-pointer p-2 mr-1 justify-between bg-gray-100"
+                    : "flex hover:bg-gray-100 cursor-pointer p-2 mr-1 justify-between"
+                }
+                onMouseMove={() => {
+                  setHighlightedIndex(index);
+                }}
+                onClick={() => {
+                  // Same logic as handleKeyDown function when "Enter" key is pressed
+                  router.push(
+                    "/cryptoMarket/[coinId]",
+                    `/cryptoMarket/${option.id}`
+                  );
+                  setSelectedOption(option);
+                  setIsOpen(false); // close the list when an item is clicked
+                  setHighlightedIndex(0);
+                  setOpenEnter((prev) => !prev);
+                }}
+              >
+                <div className="flex flex-row gap-x-2">
+                  <img
+                    src={option.image}
+                    alt="icon"
+                    className="rounded-full h-7 w-7"
+                  />
+                  <div className="flex gap-x-1.5">
+                    {option.name}{" "}
+                    <div className="text-gray-500">{option.symbol}</div>
+                  </div>
+                </div>{" "}
+                <div>#{option.market_cap_rank}</div>
+              </li>
+            ))}
+          </Listbox>
+        </>
       ) : null}
     </div>
   );

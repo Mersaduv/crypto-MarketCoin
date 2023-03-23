@@ -4,14 +4,14 @@ import http from "./httpService";
 // // Make a GET request to retrieve data
 export const getData = () => {
   return http.get(
-    `/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&sparkline=false`
+    `/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&sparkline=false`
   );
 };
 
 // //
 export const getSomeData = (data) => {
   return http.get(
-    `/coins/markets?vs_currency=usd&ids=${data}&order=market_cap_desc&per_page=100&page=1&sparkline=false`
+    `/coins/${data}`
   );
 };
 
