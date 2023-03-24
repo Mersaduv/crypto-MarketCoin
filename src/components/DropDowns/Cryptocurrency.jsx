@@ -51,9 +51,11 @@ const Cryptocurrency = () => {
                   </Link>
                 </div>
                 <div className="hover:bg-gray-50 py-2 px-1">
-                  <FiberNewIcon className="ml-2" />
+                  <Link href="/new-cryptocurrencies">
+                    <FiberNewIcon className="ml-2" />
 
-                  <span className="font-bold">تازه های مارکت</span>
+                    <span className="font-bold">تازه های مارکت</span>
+                  </Link>
                 </div>
               </Box>
               <Box gridColumn="span 6">

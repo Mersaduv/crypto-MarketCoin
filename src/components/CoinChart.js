@@ -70,11 +70,11 @@ const CoinChart = ({ coin, time7d }) => {
                     },
                 }}
                 data={{
-                    labels: console.log(chartData.map((value) =>
+                    labels: chartData.map((value) =>
                         chartTime === !time7d ? 1 : time7d
                             ? moment(value.x).format("LT")
                             : moment(value.x).format("MMM DD")
-                    )),
+                    ),
 
                     datasets: [
                         {

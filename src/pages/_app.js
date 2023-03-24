@@ -4,6 +4,7 @@ import { ColorContextProvider } from "@/theme/MUI_MODE";
 import { Provider } from "react-redux";
 import EnterStateProvider from "../context/enterState";
 import WatchListContext from "../context/WatchListContext";
+import WatchListContextNewCoin from "../context/WatchListContextNewCoin";
 
 
 import Layout from "../Layout/Layout";
@@ -14,12 +15,16 @@ export default function App({ Component, pageProps }) {
     <ColorContextProvider>
       <Provider store={store}>
         <WatchListContext>
-          <EnterStateProvider>
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
+          <WatchListContextNewCoin>
+            <EnterStateProvider>
+              <Layout>
+                <Component {...pageProps} />
+              </Layout>
 
-          </EnterStateProvider>
+            </EnterStateProvider>
+
+          </WatchListContextNewCoin>
+
 
         </WatchListContext>
 

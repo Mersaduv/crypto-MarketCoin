@@ -84,35 +84,35 @@ const Navbar = () => {
           <div className="flex items-center gap-x-4">
             <div className="flex whitespace-nowrap  text-xs gap-x-2">
               <div>رمزارزها: </div>
-              <div className="text-blue-600 ">
+              <div className="text-[#2563eb] ">
                 {globalMetrics?.active_cryptocurrencies}
               </div>
             </div>
 
             <div className="flex whitespace-nowrap text-xs gap-x-2">
               <div>صرافیا: </div>
-              <div className="text-blue-600 ">
+              <div className="text-[#2563eb] ">
                 {globalMetrics?.active_exchanges}
               </div>
             </div>
 
             <div className="flex whitespace-nowrap text-xs gap-x-2">
               <div>مارکت: </div>
-              <div className="text-blue-600 ">
+              <div className="text-[#2563eb] ">
                 ${globalMetrics?.quote.USD.total_market_cap.toLocaleString()}
               </div>
             </div>
 
             <div className="flex whitespace-nowrap text-xs gap-x-2">
               <div>حجم 24h: </div>
-              <div className="text-blue-600 ">
+              <div className="text-[#2563eb] ">
                 ${globalMetrics?.quote.USD.total_volume_24h.toLocaleString()}
               </div>
             </div>
 
             <div className="flex whitespace-nowrap text-xs gap-x-2">
               <div>سهم: </div>
-              <div className="text-blue-600 whitespace-nowrap flex ">
+              <div className="text-[#2563eb] whitespace-nowrap flex ">
                 بیتکوین: <div> {globalMetrics?.btc_dominance.toFixed(2)}%</div>
               </div>
             </div>

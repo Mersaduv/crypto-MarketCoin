@@ -118,7 +118,7 @@ const SectionHead = () => {
               )
             )}
           </Typography>
-          نسبت به روز قبل{" "}
+        {" "}  نسبت به روز قبل {" "}
           {marketdata.data.quote.USD.total_market_cap_yesterday_percentage_change.toFixed(
             1
           ) > 0
@@ -131,7 +131,7 @@ const SectionHead = () => {
       <Typography
         variant="body1"
         onClick={() => setMore((prev) => !prev)}
-        className={` text-gray-400 font-bold underline inline-block cursor-pointer`}
+        className={` text-[#84abff] font-bold underline inline-block cursor-pointer`}
       >
         {/*Clickable Div*/}
         نمایش {!showMore ? " بیشتر" : "کمتر "}
@@ -166,7 +166,7 @@ const SectionHead = () => {
               {marketdata.data.btc_dominance.toFixed(2)}٪ است که{" "}
               {ShowPrice(marketdata.percentageChange.toFixed(2))} نسبت به روز
               قبل
-              {marketdata.percentageChange > 0 ? " افزایش" : "  کاهش "}
+              {marketdata.percentageChange > 0 ? " افزایش" : "  کاهش "} {" "}
               یافته است.
             </Typography>
           </div>
