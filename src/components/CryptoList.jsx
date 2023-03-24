@@ -25,19 +25,21 @@ const CryptoList = ({ data }) => {
           <th className="text-center lg:text-start text-gray-500 dark:text-gray-300 pb-2 pl-6 lg:p-2 font-medium text-sm ">
             دنبال کردن
           </th>
-          <th className="text-start text-gray-500 dark:text-gray-300 pb-2 pl-6 lg:p-2 font-medium text-sm">
+          <th
+            className={`text-start bg-white dark:bg-black sticky right-0 text-gray-500 dark:text-gray-300 pb-2 pl-6 lg:p-2 font-medium text-sm`}
+          >
             نام
           </th>
-          <th className="text-start text-gray-500 dark:text-gray-300 pb-2 pl-6 font-medium text-sm">
+          <th className="text-start pr-4 text-gray-500 dark:text-gray-300 pb-2 pl-6 font-medium text-sm">
             % 24H
           </th>
           <th className="text-start text-gray-500 dark:text-gray-300 pb-2 pl-6 font-medium text-sm  ">
             قیمت
           </th>
-          <th className="text-start text-gray-500 dark:text-gray-300 pb-2 pl-6 font-medium text-sm  md:table-cell">
+          <th className="text-start pr-2 text-gray-500 dark:text-gray-300 pb-2 pl-6 font-medium text-sm  md:table-cell">
             مارکت
           </th>
-          <th className="text-start text-gray-500 dark:text-gray-300 pb-2 pl-6 font-medium text-sm  md:table-cell">
+          <th className="text-start pr-2 text-gray-500 dark:text-gray-300 pb-2 pl-6 font-medium text-sm  md:table-cell">
             وضعیت هفته
           </th>
         </tr>
@@ -71,7 +73,7 @@ const CryptoList = ({ data }) => {
                 )}
               </button>
             </td>
-            <td className="cursor-pointer py-4">
+            <td className="cursor-pointer whitespace-pre-wrap py-4 sticky right-0 bg-white">
               <Link
                 href="/cryptoMarket/[coinId]"
                 as={`/cryptoMarket/${coin.id}`}
@@ -94,7 +96,7 @@ const CryptoList = ({ data }) => {
             </td>
 
             <td>
-              <div className="text-[12px] lg:text-[14px] font-bold">
+              <div className="text-[12px] lg:text-[14px] font-bold mr-4">
                 {ShowPriceList(coin.price_change_percentage_24h.toFixed(3))}
               </div>
             </td>
@@ -104,18 +106,31 @@ const CryptoList = ({ data }) => {
               </div>
             </td>
             <td>
-              <div className="text-[12px] lg:text-[14px] font-bold  md:flex">
+              <div className="text-[12px] lg:text-[14px] mr-2 font-bold  md:flex">
                 $ {coin.market_cap.toLocaleString()}
               </div>
             </td>
             <td>
-              <div className="text-[12px] lg:text-[14px] font-bold  md:flex">
+              <div className="text-[12px] lg:text-[14px] mr-2 font-bold  md:flex">
                 {/* <CoinChart coin={coin} time7d={7} /> */}
-                    اختلال شبکه نمودار           <span>
-                        <svg style={{ color: 'rgb(220 38 38)', width: '20px' }} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6L9 12.75l4.286-4.286a11.948 11.948 0 014.306 6.43l.776 2.898m0 0l3.182-5.511m-3.182 5.51l-5.511-3.181" />
-                        </svg>
-                    </span>
+                اختلال شبکه نمودار{" "}
+                <span>
+                  <svg
+                    style={{ color: "rgb(220 38 38)", width: "20px" }}
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-6 h-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M2.25 6L9 12.75l4.286-4.286a11.948 11.948 0 014.306 6.43l.776 2.898m0 0l3.182-5.511m-3.182 5.51l-5.511-3.181"
+                    />
+                  </svg>
+                </span>
               </div>
             </td>
           </tr>

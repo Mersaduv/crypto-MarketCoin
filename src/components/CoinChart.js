@@ -41,10 +41,12 @@ const CoinChart = ({ coin, time7d }) => {
                 `https://api.coingecko.com/api/v3/coins/${coin.id}/market_chart?vs_currency=usd&days=${chartTime}`
             );
             const data = result.data;
+            console.log(data);
             const coinChartData = data.prices.map((value) => ({
                 x: value[0],
                 y: value[1].toFixed(5),
             }));
+            console.log(coinChartData);
             setChartData(coinChartData);
         };
 
@@ -68,11 +70,11 @@ const CoinChart = ({ coin, time7d }) => {
                     },
                 }}
                 data={{
-                    labels: chartData.map((value) =>
+                    labels: console.log(chartData.map((value) =>
                         chartTime === !time7d ? 1 : time7d
                             ? moment(value.x).format("LT")
                             : moment(value.x).format("MMM DD")
-                    ),
+                    )),
 
                     datasets: [
                         {

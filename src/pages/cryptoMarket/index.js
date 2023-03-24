@@ -14,7 +14,7 @@ const index = ({ coins, page }) => {
   }, []);
   return (
 
-    <div className="max-w-screen-lg m-auto">
+    <div className="max-w-screen-lg m-auto ">
       {hasWindow && (
         <>
           <div>

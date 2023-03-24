@@ -15,7 +15,7 @@ const Cryptocurrency = () => {
 
   return (
     <div className="flex items-center justify-center">
-      <div className="relative group">
+      <div className=" hidden md:block relative group">
         <div
           onMouseEnter={() => setIsOpen(true)}
           onMouseLeave={() => setIsOpen(false)}
@@ -46,7 +46,9 @@ const Cryptocurrency = () => {
                 <div className="hover:bg-gray-50 py-2 px-1">
                   <TrendingUpIcon className="ml-2" />
 
-                  <span className="font-bold">نمودار مارکت</span>
+                  <Link href="/globalChart" className="font-bold">
+                    نمودار مارکت
+                  </Link>
                 </div>
                 <div className="hover:bg-gray-50 py-2 px-1">
                   <FiberNewIcon className="ml-2" />
@@ -80,6 +82,74 @@ const Cryptocurrency = () => {
               </Box>
             </Box>
           </div>
+        )}
+      </div>
+
+      {/* menu dropdown first mobile */}
+      <div className="w-full mx-4 md:hidden">
+        <div
+          className={`${
+            isOpen && "text-blue-600"
+          } font-bold py-4 text-xl flex justify-between items-center`}
+          onClick={() => setIsOpen((prev) => !prev)}
+        >
+          {" "}
+          <h1>رمزارزها</h1>{" "}
+          {/* {!isOpen ? <BiChevronDown size={38} /> : <BiChevronUp size={38} />}{" "} */}
+          {isOpen ? (
+            <BiChevronDown className="transition-all rotate-180" size={38} />
+          ) : (
+            <BiChevronDown className="transition-all" size={38} />
+          )}
+        </div>
+        <hr />
+        {isOpen && (
+          <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap={4}>
+            <Box gridColumn="span 12">
+              <div className="text-gray-400">رمزارزها</div>
+              <div className="hover:bg-gray-50 py-2 px-1 ">
+                <Link href="/">
+                  <ElectricBoltIcon className="ml-2" />
+
+                  <span className="font-bold">برترین رمزارزها</span>
+                </Link>
+              </div>
+              <div className="hover:bg-gray-50 py-2 px-1">
+                <TrendingUpIcon className="ml-2" />
+
+                <span className="font-bold">نمودار مارکت</span>
+              </div>
+              <div className="hover:bg-gray-50 py-2 px-1">
+                <FiberNewIcon className="ml-2" />
+
+                <span className="font-bold">تازه های مارکت</span>
+              </div>
+            </Box>
+            <Box gridColumn="span 12">
+              <div className="text-gray-400">قرارداد های هوشمند</div>
+              <div className="hover:bg-gray-50 py-2 px-1">
+                <DataSaverOffIcon className="ml-2" />
+
+                <span className="font-bold">مجموعه ها</span>
+              </div>
+              <div className="hover:bg-gray-50 py-2 px-1">
+                <BarChartIcon className="ml-2" />
+
+                <span className="font-bold">برترین بلاکها</span>
+              </div>
+            </Box>
+            <Box gridColumn="span 12">
+              <div className="text-gray-400">جامعه ها</div>
+              <div className="hover:bg-gray-50 py-2 px-1">
+                <LanguageIcon className="ml-2" />
+                <span className="font-bold">مروری به خبرهای کریپتو</span>
+              </div>
+              <div className="hover:bg-gray-50 py-2 px-1">
+                <ChatIcon className="ml-2" />
+                <span className="font-bold">گروه تلگرامی تحلیل و بررسی</span>
+              </div>
+            </Box>
+          </Box>
         )}
       </div>
     </div>

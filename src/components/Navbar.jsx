@@ -80,7 +80,7 @@ const Navbar = () => {
     <div className="border-y flex flex-col-reverse md2:flex-col">
       {/* header show price market  */}
       <div className="flex justify-between w-full  py-1.5 border-b">
-        <div className="flex flex-1 whitespace-nowrap   overflow-x-auto gap-x-4">
+        <div className="flex flex-1 whitespace-nowrap   min-w-[360px]  overflow-x-auto gap-x-4">
           <div className="flex items-center gap-x-4">
             <div className="flex whitespace-nowrap  text-xs gap-x-2">
               <div>رمزارزها: </div>
@@ -304,7 +304,7 @@ const Navbar = () => {
             >
               <Dialog.Panel className="relative flex  flex-col overflow-y-auto bg-white dark:bg-gray-800 shadow-xl w-screen">
                 {/* header  */}
-                <div className=" sticky top-0 pl-2 flex items-center justify-between ">
+                <div className=" sticky top-0 pl-2 flex items-center bg-white shadow justify-between ">
                   {/* close button */}
                   <div className="flex flex-row-reverse p-3">
                     <button type="button" onClick={() => setOpenMenu(false)}>
@@ -330,9 +330,9 @@ const Navbar = () => {
                   </Link>
                 </div>
                 <div className="flex flex-col">
-                  {/* <Cryptocurrency />
+                  <Cryptocurrency />
                   <Exchanges />
-                  <Projects /> */}
+                  <Projects />
                 </div>
               </Dialog.Panel>
             </Transition.Child>

@@ -5,7 +5,7 @@ import { getExchanges } from "@/src/services/serviceData";
 const index = ({ coin }) => {
   // const [cryptoInfo] = coin;
   return (
-    <div>
+    <div className=" min-w-[360px] overflow-x-auto">
       <ExgangesList data={coin} />
     </div>
   );
