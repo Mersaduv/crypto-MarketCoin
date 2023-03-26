@@ -73,11 +73,11 @@ const CryptoList = ({ data }) => {
                 )}
               </button>
             </td>
-            <td className="cursor-pointer whitespace-pre-wrap py-4 sticky right-0 bg-white">
+            <td className="cursor-pointer whitespace-pre-wrap  sticky right-0 bg-white">
               <Link
                 href="/cryptoMarket/[coinId]"
                 as={`/cryptoMarket/${coin.id}`}
-                className="flex items-center gap-2"
+                className="flex items-center gap-2 py-4 w-28 sm:w-auto"
               >
                 <img
                   src={coin.image}

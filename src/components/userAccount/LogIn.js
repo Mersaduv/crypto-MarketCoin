@@ -33,7 +33,7 @@ const LogIn = () => {
   });
 
   return (
-    <div>
+    <div className="z-30">
       <form onSubmit={formik.handleSubmit} className="mt-10 pb-5">
         <div className="mb-3">
           <input
@@ -45,9 +45,8 @@ const LogIn = () => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             className={`w-full p-2 py-3 border rounded-md outline-none bg-gray-50 
-          focus:bg-white  text-[14px] ${
-            formik.touched.email && formik.errors.email && "border-red-500"
-          }`}
+          focus:bg-white  text-[14px] ${formik.touched.email && formik.errors.email && "border-red-500"
+              }`}
           />
         </div>
 
@@ -61,11 +60,10 @@ const LogIn = () => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             className={`w-full p-2 py-3 border  rounded-md outline-none bg-gray-50 
-          focus:bg-white  text-[14px] ${
-            formik.touched.password &&
-            formik.errors.password &&
-            "border-red-500"
-          }`}
+          focus:bg-white  text-[14px] ${formik.touched.password &&
+              formik.errors.password &&
+              "border-red-500"
+              }`}
           />
         </div>
 
@@ -91,7 +89,7 @@ const LogIn = () => {
           </div>
         </div>
 
-        <div className="items-center gap-2 mt-3 sm:flex">
+        <div className="items-center  gap-2 mt-3 sm:flex">
           <button
             type="button"
             className="flex justify-center items-center gap-2 w-full mt-2 p-2.5 text-[14px] 
@@ -104,9 +102,8 @@ const LogIn = () => {
           <button
             type="submit"
             className={`w-full mt-2 p-2.5 flex-1 text-white bg-blue-500 rounded-md
-            outline-none ring-offset-2 ring-indigo-600 focus:ring-2 ${
-              !formik.isValid && "cursor-not-allowed"
-            }`}
+            outline-none ring-offset-2 ring-indigo-600 focus:ring-2 ${!formik.isValid && "cursor-not-allowed"
+              }`}
           >
             logIn
           </button>

@@ -13,7 +13,11 @@
 
 #autoComplated ,#autoComplated input {
   color: rgb(166, 176, 195);
-  
+
   border-radius: 4px;
   background-color: rgb(239, 242, 245);
+}
+#accountmobile button:focus{
+  box-shadow: rgb(234, 241, 248) 0px 0px 0px 3px;
+
 }

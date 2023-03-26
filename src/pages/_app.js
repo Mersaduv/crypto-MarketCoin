@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import EnterStateProvider from "../context/enterState";
 import WatchListContext from "../context/WatchListContext";
 import WatchListContextNewCoin from "../context/WatchListContextNewCoin";
+import WatchListNFT from "../context/WatchListNFT";
 
 
 import Layout from "../Layout/Layout";
@@ -16,18 +17,15 @@ export default function App({ Component, pageProps }) {
       <Provider store={store}>
         <WatchListContext>
           <WatchListContextNewCoin>
-            <EnterStateProvider>
-              <Layout>
-                <Component {...pageProps} />
-              </Layout>
-
-            </EnterStateProvider>
-
+            <WatchListNFT>
+              <EnterStateProvider>
+                <Layout>
+                  <Component {...pageProps} />
+                </Layout>
+              </EnterStateProvider>
+            </WatchListNFT>
           </WatchListContextNewCoin>
-
-
         </WatchListContext>
-
       </Provider>
     </ColorContextProvider>
 

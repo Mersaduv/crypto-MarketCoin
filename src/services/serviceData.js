@@ -23,3 +23,10 @@ export const getExchanges = () => {
 export const getOneExchanges = (data) => {
   return http.get(`/exchanges/${data}`);
 };
+
+export const getNft = () => {
+  return http.get('/nfts/list')
+}
+export const getSomeNft = ({ data }) => {
+  return http.get(`/nfts/${data}`)
+}

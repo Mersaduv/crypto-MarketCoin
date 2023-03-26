@@ -42,13 +42,6 @@ const Navbar = () => {
 
   const [openMenu, setOpenMenu] = useState(false);
 
-  const menuItems = [
-    { id: 1, name: "Home", path: "/" },
-    { id: 2, name: "Markets", path: "/markets" },
-    { id: 3, name: "Exchange", path: "/exchange" },
-    { id: 4, name: "Watchlist", path: "/watchList" },
-  ];
-
   useEffect(() => {
     axios
       .get(
@@ -77,9 +70,9 @@ const Navbar = () => {
 
   // const classes = useStyles();
   return (
-    <div className="border-y flex flex-col-reverse md2:flex-col">
+    <div className="border-y max-w-screen-lg m-auto flex flex-col-reverse md2:flex-col">
       {/* header show price market  */}
-      <div className="flex justify-between w-full  py-1.5 border-b">
+      <div className="flex justify-between w-full font-semibold  py-1.5 border-b">
         <div className="flex flex-1 whitespace-nowrap   min-w-[360px]  overflow-x-auto gap-x-4">
           <div className="flex items-center gap-x-4">
             <div className="flex whitespace-nowrap  text-xs gap-x-2">
@@ -113,15 +106,19 @@ const Navbar = () => {
             <div className="flex whitespace-nowrap text-xs gap-x-2">
               <div>سهم: </div>
               <div className="text-[#2563eb] whitespace-nowrap flex ">
-                بیتکوین: <div> {globalMetrics?.btc_dominance.toFixed(2)}%</div>
+                بیتکوین:{" "}
+                <div className="mr-1">
+                  {" "}
+                  {globalMetrics?.btc_dominance.toFixed(2)}%{" "}
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="w-[300px] md2:flex  border-r pr-4  hidden gap-x-1 ">
+        <div className="w-[300px] flex  z-50  border-r pr-4   gap-x-1 ">
           {/* dark mode and language  */}
-          <div className="flex items-center gap-x-2   ">
+          <div className=" md:flex hidden items-center gap-x-2   ">
             <FaMoon />
             <LanguageDropdown />
           </div>
@@ -129,7 +126,7 @@ const Navbar = () => {
           <div>
             <div
               id="account"
-              className="text-sm gap-x-2 whitespace-nowrap font-bold flex items-center"
+              className="text-sm gap-x-2 whitespace-nowrap z-50 md:flex hidden font-bold  items-center"
               onClick={() => setProfileModal(true)}
             >
               <button
@@ -154,7 +151,7 @@ const Navbar = () => {
                 ></div>
 
                 <div className="flex items-center min-h-screen px-4 py-8">
-                  <div className="relative w-full max-w-[460px] p-4 mx-auto bg-white rounded-md shadow-lg">
+                  <div className="relative w-full max-w-[360px] p-4 mx-auto bg-white dark:bg-slate-700 rounded-md shadow-lg">
                     <div className="mt-3">
                       <div className="flex items-center justify-evenly mx-auto border-b border-gray-400 pb-4">
                         <CloseIcon
@@ -199,7 +196,7 @@ const Navbar = () => {
                         </button>
                       </div>
 
-                      <div id="accountUser" className="mt-2 text-center">
+                      <div id="accountUser" className="mt-2 text-cente">
                         {profileSignUp && <SignUp />}
                         {profileLogIn && <LogIn />}
                       </div>
@@ -272,73 +269,133 @@ const Navbar = () => {
       </Box>
 
       {/* Responsive Menu */}
-      <Transition.Root show={openMenu} as={React.Fragment}>
-        <Dialog
-          as="div"
-          className="relative z-40 lg:hidden"
-          onClose={setOpenMenu}
-        >
-          {/* dark opacity the screen for showing the menu */}
-          <Transition.Child
-            as={React.Fragment}
-            enter="transition-opacity ease-linear duration-300"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="transition-opacity ease-linear duration-300"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
+      <div className="">
+        <Transition.Root show={openMenu} as={React.Fragment}>
+          <Dialog
+            as="div"
+            className="relative  lg:hidden"
+            onClose={setOpenMenu}
           >
-            <div className="fixed inset-0 bg-black bg-opacity-50" />
-          </Transition.Child>
-
-          {/* menu */}
-          <div className="fixed inset-0 z-40 flex">
+            {/* dark opacity the screen for showing the menu */}
             <Transition.Child
               as={React.Fragment}
-              enter="transition ease-in-out duration-300 transform"
-              enterFrom="-translate-x-full"
-              enterTo="translate-x-0"
-              leave="transition ease-in-out duration-300 transform"
-              leaveFrom="translate-x-0"
-              leaveTo="-translate-x-full"
+              enter="transition-opacity ease-linear duration-300"
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
+              leave="transition-opacity ease-linear duration-300"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
             >
-              <Dialog.Panel className="relative flex  flex-col overflow-y-auto bg-white dark:bg-gray-800 shadow-xl w-screen">
-                {/* header  */}
-                <div className=" sticky top-0 pl-2 flex items-center bg-white shadow justify-between ">
-                  {/* close button */}
-                  <div className="flex flex-row-reverse p-3">
-                    <button type="button" onClick={() => setOpenMenu(false)}>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
-                        stroke="currentColor"
-                        className="w-8 h-6"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M6 18L18 6M6 6l12 12"
-                        />
-                      </svg>
-                    </button>
-                  </div>
-                  {/* Link logo*/}
-                  <Link className="font-bold" href="/">
-                    MarketCoin
-                  </Link>
-                </div>
-                <div className="flex flex-col">
-                  <Cryptocurrency />
-                  <Exchanges />
-                  <Projects />
-                </div>
-              </Dialog.Panel>
+              <div className="fixed inset-0 bg-black bg-opacity-50" />
             </Transition.Child>
-          </div>
-        </Dialog>
-      </Transition.Root>
+
+            {/* menu */}
+            <div className="fixed inset-0 flex">
+              <Transition.Child
+                as={React.Fragment}
+                enter="transition ease-in-out duration-300 transform"
+                enterFrom="-translate-x-full"
+                enterTo="translate-x-0"
+                leave="transition ease-in-out duration-300 transform"
+                leaveFrom="translate-x-0"
+                leaveTo="-translate-x-full"
+              >
+                <Dialog.Panel className="relative flex  flex-col overflow-y-auto bg-white dark:bg-gray-800 shadow-xl w-screen">
+                  {/* header  */}
+                  <div className=" sticky top-0 pl-2 flex items-center bg-white shadow justify-between ">
+                    {/* close button */}
+                    <div className="flex flex-row-reverse p-3">
+                      <button type="button" onClick={() => setOpenMenu(false)}>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth={1.5}
+                          stroke="currentColor"
+                          className="w-8 h-6"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M6 18L18 6M6 6l12 12"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                    {/* Link logo*/}
+                    <Link className="font-bold" href="/">
+                      MarketCoin
+                    </Link>
+                  </div>
+                  <div className="flex flex-col">
+                    <Cryptocurrency />
+                    <Exchanges />
+                    <Projects />
+                    {/* watchList  */}
+                    <Typography
+                      sx={{
+                        whiteSpace: "nowrap",
+                        gap: "2px",
+                        "&:hover": {
+                          color: "#000", // black color on hover
+                          backgroundColor: "#f5f5f5", // lighten the gray color on hover
+                        },
+                      }}
+                      component="span"
+                      alignItems="center"
+                      color="gray"
+                    >
+                      <Link
+                        className="border-b flex py-4 mx-4"
+                        href="/watchList"
+                      >
+                        <StarIcon className="text-3xl ml-1" />
+                        <Typography
+                          className="text-black font-semibold"
+                          variant="h6"
+                        >
+                          فهرست شما
+                        </Typography>
+                      </Link>
+                    </Typography>
+                    {/* Profile first mobile  */}
+                    <div
+                      id="accountmobile"
+                      className="text-sm gap-x-2 mt-8 whitespace-nowrap font-bold flex flex-col px-4 gap-y-2 "
+                      onClick={() => {
+                        setProfileModal(true);
+                        setOpenMenu(false);
+                      }}
+                    >
+                      <button
+                        onClick={signUpHandler}
+                        className="py-2   font-semibold text-base bg-blue-600 hover:bg-blue-700 rounded-md  text-white"
+                      >
+                        ثبت نام
+                      </button>
+                      <button
+                        onClick={logInHandler}
+                        className="py-2    font-semibold text-base border text-blue-600   hover:bg-gray-100 bg-gray-50 rounded-md "
+                      >
+                        ورود
+                      </button>
+                    </div>
+                    {/* dark mode and language  */}
+                    <div className="flex justify-between items-center   px-4 mt-7 gap-x-2   ">
+                      <div className="bg-gray-100 p-3 rounded-md">
+                        <FaMoon className="text-lg" />
+                      </div>
+                      <div className="bg-gray-100 p-3  pr-7 rounded-md">
+                        <LanguageDropdown />
+                      </div>
+                    </div>
+                  </div>
+                </Dialog.Panel>
+              </Transition.Child>
+            </div>
+          </Dialog>
+        </Transition.Root>
+      </div>
     </div>
   );
 };

@@ -36,22 +36,31 @@ const Cryptocurrency = () => {
             <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap={4}>
               <Box gridColumn="span 6">
                 <div className="text-gray-400">رمزارزها</div>
-                <div className="hover:bg-gray-50 py-2 px-1 ">
-                  <Link href="/">
+                <div>
+                  <Link
+                    href="/"
+                    className="hover:bg-gray-50 inline-block w-full py-2 px-1"
+                  >
                     <ElectricBoltIcon className="ml-2" />
 
                     <span className="font-bold">برترین رمزارزها</span>
                   </Link>
                 </div>
-                <div className="hover:bg-gray-50 py-2 px-1">
-                  <TrendingUpIcon className="ml-2" />
-
-                  <Link href="/globalChart" className="font-bold">
-                    نمودار مارکت
+                <div>
+                  <Link
+                    href="/globalChart"
+                    className="hover:bg-gray-50 inline-block w-full py-2 px-1"
+                  >
+                    {" "}
+                    <TrendingUpIcon className="ml-2" />
+                    <span> نمودار مارکت</span>{" "}
                   </Link>
                 </div>
-                <div className="hover:bg-gray-50 py-2 px-1">
-                  <Link href="/new-cryptocurrencies">
+                <div>
+                  <Link
+                    className="hover:bg-gray-50 inline-block w-full py-2 px-1"
+                    href="/new-cryptocurrencies"
+                  >
                     <FiberNewIcon className="ml-2" />
 
                     <span className="font-bold">تازه های مارکت</span>
@@ -60,27 +69,39 @@ const Cryptocurrency = () => {
               </Box>
               <Box gridColumn="span 6">
                 <div className="text-gray-400">قرارداد های هوشمند</div>
-                <div className="hover:bg-gray-50 py-2 px-1">
-                  <DataSaverOffIcon className="ml-2" />
+                <div>
+                  <Link
+                    href="/nft"
+                    className="hover:bg-gray-50 inline-block w-full py-2 px-1"
+                  >
+                    <DataSaverOffIcon className="ml-2" />
 
-                  <span className="font-bold">مجموعه ها</span>
+                    <span className="font-bold">NFT ها</span>
+                  </Link>
                 </div>
-                <div className="hover:bg-gray-50 py-2 px-1">
+
+                {/* <div className="hover:bg-gray-50 py-2 px-1">
                   <BarChartIcon className="ml-2" />
 
                   <span className="font-bold">برترین بلاکها</span>
-                </div>
+                </div> */}
               </Box>
               <Box gridColumn="span 12">
                 <div className="text-gray-400">جامعه ها</div>
-                <div className="hover:bg-gray-50 py-2 px-1">
+                <Link
+                  href="https://fa.cryptonews.com/"
+                  className="hover:bg-gray-50 inline-block w-full py-2 px-1"
+                >
                   <LanguageIcon className="ml-2" />
                   <span className="font-bold">مروری به خبرهای کریپتو</span>
-                </div>
-                <div className="hover:bg-gray-50 py-2 px-1">
+                </Link>
+                <Link
+                  href="https://t.me/telochat_fa"
+                  className="hover:bg-gray-50 inline-block w-full py-2 px-1"
+                >
                   <ChatIcon className="ml-2" />
                   <span className="font-bold">گروه تلگرامی تحلیل و بررسی</span>
-                </div>
+                </Link>
               </Box>
             </Box>
           </div>
@@ -109,47 +130,71 @@ const Cryptocurrency = () => {
           <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap={4}>
             <Box gridColumn="span 12">
               <div className="text-gray-400">رمزارزها</div>
-              <div className="hover:bg-gray-50 py-2 px-1 ">
-                <Link href="/">
+              <div>
+                <Link
+                  href="/"
+                  className="hover:bg-gray-50 inline-block w-full py-2 px-1"
+                >
                   <ElectricBoltIcon className="ml-2" />
 
                   <span className="font-bold">برترین رمزارزها</span>
                 </Link>
               </div>
-              <div className="hover:bg-gray-50 py-2 px-1">
-                <TrendingUpIcon className="ml-2" />
-
-                <span className="font-bold">نمودار مارکت</span>
+              <div>
+                <Link
+                  href="/globalChart"
+                  className="hover:bg-gray-50 inline-block w-full py-2 px-1"
+                >
+                  {" "}
+                  <TrendingUpIcon className="ml-2" />
+                  <span> نمودار مارکت</span>{" "}
+                </Link>
               </div>
-              <div className="hover:bg-gray-50 py-2 px-1">
-                <FiberNewIcon className="ml-2" />
+              <div>
+                <Link
+                  className="hover:bg-gray-50 inline-block w-full py-2 px-1"
+                  href="/new-cryptocurrencies"
+                >
+                  <FiberNewIcon className="ml-2" />
 
-                <span className="font-bold">تازه های مارکت</span>
+                  <span className="font-bold">تازه های مارکت</span>
+                </Link>
               </div>
             </Box>
             <Box gridColumn="span 12">
               <div className="text-gray-400">قرارداد های هوشمند</div>
-              <div className="hover:bg-gray-50 py-2 px-1">
-                <DataSaverOffIcon className="ml-2" />
+              <div>
+                <Link
+                  href="/nft"
+                  className="hover:bg-gray-50 inline-block w-full py-2 px-1"
+                >
+                  <DataSaverOffIcon className="ml-2" />
 
-                <span className="font-bold">مجموعه ها</span>
+                  <span className="font-bold">NFT ها</span>
+                </Link>
               </div>
-              <div className="hover:bg-gray-50 py-2 px-1">
+              {/* <div className="hover:bg-gray-50 py-2 px-1">
                 <BarChartIcon className="ml-2" />
 
                 <span className="font-bold">برترین بلاکها</span>
-              </div>
+              </div> */}
             </Box>
             <Box gridColumn="span 12">
               <div className="text-gray-400">جامعه ها</div>
-              <div className="hover:bg-gray-50 py-2 px-1">
+              <Link
+                href="https://fa.cryptonews.com/"
+                className="hover:bg-gray-50 inline-block w-full py-2 px-1"
+              >
                 <LanguageIcon className="ml-2" />
                 <span className="font-bold">مروری به خبرهای کریپتو</span>
-              </div>
-              <div className="hover:bg-gray-50 py-2 px-1">
+              </Link>
+              <Link
+                href="https://t.me/telochat_fa"
+                className="hover:bg-gray-50 inline-block w-full py-2 px-1"
+              >
                 <ChatIcon className="ml-2" />
                 <span className="font-bold">گروه تلگرامی تحلیل و بررسی</span>
-              </div>
+              </Link>
             </Box>
           </Box>
         )}

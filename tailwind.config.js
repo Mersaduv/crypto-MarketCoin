@@ -12,6 +12,7 @@ module.exports = {
   theme: {
     extend: {
       screens: {
+        xsm: "340px",
         sm: "640px",
         md: "768px",
         md2: "800px",
@@ -30,7 +31,7 @@ module.exports = {
           DEFAULT: "#388e3c",
           dark: "#1b5e20",
         },
-        
+
         // Add a color scheme for dark mode
         dark: {
           background: '#1c1c1c',

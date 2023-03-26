@@ -1,4 +1,5 @@
 import { Box } from "@mui/material";
+import Link from "next/link";
 import { useState } from "react";
 import { BiChevronDown } from "react-icons/bi";
 import { MdOutlineCurrencyExchange } from "react-icons/md";
@@ -8,7 +9,7 @@ const Exchanges = () => {
 
   return (
     <div className="flex items-center justify-center">
-      <div className="relative group hidden sm:block">
+      <div className="relative group hidden md:block">
         <div
           onMouseEnter={() => setIsOpen(true)}
           onMouseLeave={() => setIsOpen(false)}
@@ -28,24 +29,77 @@ const Exchanges = () => {
           >
             <Box display="grid" gridTemplateColumns="repeat(4, 1fr)" gap={4}>
               <Box gridColumn="span 4">
-                <div className="hover:bg-gray-50 py-2 px-2">
+                <Link
+                  href="/exchanges"
+                  className="hover:bg-gray-50 inline-block w-full py-2 px-1"
+                >
                   <MdOutlineCurrencyExchange className="ml-2" />
 
                   <span className="font-bold whitespace-nowrap text-sm">
                     صرافی های متمرکز
                   </span>
-                </div>
+                </Link>
                 <hr />
-                <div className="hover:bg-gray-50 py-2 px-2">
+                <Link
+                  href="/decentralized-exchanges"
+                  className="hover:bg-gray-50 inline-block w-full py-2 px-1"
+                >
                   <RiExchangeFundsFill className="ml-2" />
 
                   <span className="font-bold whitespace-nowrap text-sm">
                     صرافی های غیر متمرکز
                   </span>
-                </div>
+                </Link>
               </Box>
             </Box>
           </div>
+        )}
+      </div>
+
+      {/* menu dropdown first mobile */}
+      <div className="w-full mx-4 md:hidden">
+        <div
+          className={`${
+            isOpen && "text-blue-600"
+          } font-bold py-4 text-xl flex justify-between items-center`}
+          onClick={() => setIsOpen((prev) => !prev)}
+        >
+          {" "}
+          <h1>صرافی ها</h1>{" "}
+          {/* {!isOpen ? <BiChevronDown size={38} /> : <BiChevronUp size={38} />}{" "} */}
+          {isOpen ? (
+            <BiChevronDown className="transition-all rotate-180" size={38} />
+          ) : (
+            <BiChevronDown className="transition-all" size={38} />
+          )}
+        </div>
+        <hr />
+        {isOpen && (
+          <Box display="grid" gridTemplateColumns="repeat(4, 1fr)" gap={4}>
+            <Box gridColumn="span 4">
+              <Link
+                href="/exchanges"
+                className="hover:bg-gray-50 inline-block w-full py-2 px-1"
+              >
+                <MdOutlineCurrencyExchange className="ml-2" />
+
+                <span className="font-bold whitespace-nowrap text-sm">
+                  صرافی های متمرکز
+                </span>
+              </Link>
+              <hr />
+              <Link
+                href="/decentralized-exchanges"
+                className="hover:bg-gray-50 inline-block w-full py-2 px-1"
+              >
+                <RiExchangeFundsFill className="ml-2" />
+
+                <span className="font-bold whitespace-nowrap text-sm">
+                  صرافی های غیر متمرکز
+                </span>
+              </Link>
+            </Box>
+          </Box>
         )}
       </div>
     </div>

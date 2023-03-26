@@ -20,7 +20,7 @@ const ExgangesList = ({ data }) => {
   // }, []);
   const shadowClass = isScrolled ? "shadow" : "";
   return (
-    <table className="table-auto whitespace-nowrap m-auto overflow-x-auto">
+    <table className="table-auto w-[98%] whitespace-nowrap m-auto overflow-x-auto">
       <thead>
         <tr>
           <th className="text-center lg:text-start text-gray-500 dark:text-gray-300 pb-2 pl-6 lg:p-2 font-medium text-sm ">
