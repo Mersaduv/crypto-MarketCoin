@@ -22,6 +22,7 @@ export const ColorContextProvider = ({ children }) => {
                 xs: 0,
                 sm: 640,
                 md: 768,
+                md2: 800,
                 lg: 1024,
                 xl: 1154
             }
@@ -30,7 +31,7 @@ export const ColorContextProvider = ({ children }) => {
             mode: mode,
 
             primary: {
-                main: mode === 'light' ? '#000000' : '#ffffff'
+                main: mode === 'light' ? '#2563eb' : '#ffffff'
             },
 
             secondary: {

@@ -38,7 +38,7 @@ const Cryptocurrency = () => {
                 <div className="text-gray-400">رمزارزها</div>
                 <div>
                   <Link
-                    href="/"
+                    href="/cryptoMarket"
                     className="hover:bg-gray-50 inline-block w-full py-2 px-1"
                   >
                     <ElectricBoltIcon className="ml-2" />
@@ -132,7 +132,7 @@ const Cryptocurrency = () => {
               <div className="text-gray-400">رمزارزها</div>
               <div>
                 <Link
-                  href="/"
+                  href="/cryptoMarket"
                   className="hover:bg-gray-50 inline-block w-full py-2 px-1"
                 >
                   <ElectricBoltIcon className="ml-2" />

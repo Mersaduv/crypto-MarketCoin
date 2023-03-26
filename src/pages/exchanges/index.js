@@ -1,7 +1,6 @@
 import ExgangesList from "@/src/components/ExgangesList";
 import { getExchanges } from "@/src/services/serviceData";
 
-
 const index = ({ coin }) => {
   // const [cryptoInfo] = coin;
   return (

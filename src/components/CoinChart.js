@@ -71,7 +71,7 @@ const CoinChart = ({ coin, time7d }) => {
                 }}
                 data={{
                     labels: chartData.map((value) =>
-                        chartTime === !time7d ? 1 : time7d
+                        chartTime === 1
                             ? moment(value.x).format("LT")
                             : moment(value.x).format("MMM DD")
                     ),
@@ -98,15 +98,15 @@ const CoinChart = ({ coin, time7d }) => {
                     </button>
                 )}
                 {/* Use ternary operator to conditionally render the button */}
-
-                <button
-                    onClick={() => setChartTime(7)}
-                    className={`border rounded-md px-4 py-1 ${chartTime === 7 && "bg-indigo-500 text-white"
-                        }`}
-                >
-                    هفته
-                </button>
-
+                {time7d ? null : (
+                    <button
+                        onClick={() => setChartTime(7)}
+                        className={`border rounded-md px-4 py-1 ${chartTime === 7 && "bg-indigo-500 text-white"
+                            }`}
+                    >
+                        هفته
+                    </button>
+                )}
 
                 {/* Use ternary operator to conditionally render the button */}
                 {time7d ? null : (

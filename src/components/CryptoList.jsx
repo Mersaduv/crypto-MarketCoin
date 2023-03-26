@@ -97,12 +97,12 @@ const CryptoList = ({ data }) => {
 
             <td>
               <div className="text-[12px] lg:text-[14px] font-bold mr-4">
-                {ShowPriceList(coin.price_change_percentage_24h.toFixed(3))}
+                {ShowPriceList(coin.price_change_percentage_24h?.toFixed(3))}
               </div>
             </td>
             <td>
               <div className="text-[12px] lg:text-[14px] font-bold  md:flex">
-                $ {coin.current_price.toLocaleString()}
+                $ {coin.current_price}
               </div>
             </td>
             <td>

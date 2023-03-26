@@ -70,7 +70,7 @@ const Navbar = () => {
 
   // const classes = useStyles();
   return (
-    <div className="border-y max-w-screen-lg m-auto flex flex-col-reverse md2:flex-col">
+    <div className="border-y  max-w-8xl m-auto flex flex-col-reverse md2:flex-col">
       {/* header show price market  */}
       <div className="flex justify-between w-full font-semibold  py-1.5 border-b">
         <div className="flex flex-1 whitespace-nowrap   min-w-[360px]  overflow-x-auto gap-x-4">
@@ -116,9 +116,9 @@ const Navbar = () => {
           </div>
         </div>
 
-        <div className="w-[300px] flex  z-50  border-r pr-4   gap-x-1 ">
+        <div className="w-[300px] flex   border-r pr-4   gap-x-1 ">
           {/* dark mode and language  */}
-          <div className=" md:flex hidden items-center gap-x-2   ">
+          <div className=" md2:flex hidden items-center gap-x-2   ">
             <FaMoon />
             <LanguageDropdown />
           </div>
@@ -126,7 +126,7 @@ const Navbar = () => {
           <div>
             <div
               id="account"
-              className="text-sm gap-x-2 whitespace-nowrap z-50 md:flex hidden font-bold  items-center"
+              className="text-sm gap-x-2 whitespace-nowrap md2:flex hidden font-bold  items-center"
               onClick={() => setProfileModal(true)}
             >
               <button
@@ -151,7 +151,7 @@ const Navbar = () => {
                 ></div>
 
                 <div className="flex items-center min-h-screen px-4 py-8">
-                  <div className="relative w-full max-w-[360px] p-4 mx-auto bg-white dark:bg-slate-700 rounded-md shadow-lg">
+                  <div className="relative w-full max-w-[450px] p-4 mx-auto bg-white dark:bg-slate-700 rounded-md shadow-lg">
                     <div className="mt-3">
                       <div className="flex items-center justify-evenly mx-auto border-b border-gray-400 pb-4">
                         <CloseIcon
@@ -214,22 +214,22 @@ const Navbar = () => {
           <Box
             display="flex"
             alignItems="center"
-            justifyContent={{ xs: "space-between", md: "flex-start" }}
+            justifyContent={{ xs: "space-between", md2: "flex-start" }}
             width="100%"
             gap={2}
           >
             <Typography variant="h6" component="div">
-              <Link href="/cryptoMarket">MarketCoin</Link>
+              <Link href="/">MarketCoin</Link>
             </Typography>
             <Box
               display="flex"
               fontWeight="fontWeightBold"
               flexDirection="row"
+              fontSize={16}
               alignItems="center"
-              flexWrap="wrap"
               width="auto"
               justifyContent="center"
-              visibility={{ xs: "hidden", md: "visible" }}
+              visibility={{ xs: "hidden", md2: "block" }}
               gap={1}
             >
               <Cryptocurrency />
@@ -238,7 +238,7 @@ const Navbar = () => {
             </Box>
 
             <Box
-              display={{ xs: "flex", md: "none" }}
+              display={{ xs: "flex", md2: "none" }}
               alignItems="center"
               gap={3}
             >
@@ -256,7 +256,7 @@ const Navbar = () => {
         <Box
           sx={{
             position: "relative",
-            display: { xs: "none", md: "flex" },
+            display: { xs: "none", md2: "flex" },
             alignItems: "center",
             gap: 2,
           }}

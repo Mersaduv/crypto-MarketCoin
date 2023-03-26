@@ -146,7 +146,7 @@ export default function SearchAutoComplate() {
         {...getRootProps()}
       >
         <Input
-          className="px-2 pb-2 pt-1 w-full outline-none focus:border-none focus:outline-none mr-3 md:mr-0"
+          className="px-2 pb-2 pt-1 w-44 outline-none focus:border-none focus:outline-none mr-3 md2:mr-0"
           placeholder="جستجو..."
           onBlur={(event) => {
             onBlur(event);

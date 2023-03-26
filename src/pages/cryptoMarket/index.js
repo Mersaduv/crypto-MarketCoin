@@ -3,45 +3,53 @@ import { getData, getSomeData } from "@/src/services/serviceData";
 import axios from "axios";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
+import { useRouter } from "next/router";
+import SectionHead from "@/src/components/SectionHead";
 
 
 const index = ({ coins, page }) => {
   const [hasWindow, setHasWindow] = useState(false);
+  const router = useRouter()
   useEffect(() => {
     if (typeof window !== "undefined") {
       setHasWindow(true);
     }
   }, []);
+
   return (
 
-    <div className="max-w-screen-lg m-auto ">
+    <div className="max-w-screen-2xl m-auto ">
       {hasWindow && (
         <>
+
+          <div className="w-2/3 ">
+            <SectionHead />
+          </div>
           <div>
             <CryptoList data={coins} />
           </div>
 
-          {coins.length >= 50 ? (
-            <div className="flex justify-center lg:justify-end items-center gap-5 mb-10 mt-5">
-              <Link className="border border-gray-400 rounded-lg my-3 py-2 px-4"  href={`/cryptoMarket?page=${page > 1 ? page - 1 : (page = 1)}`}>
-                
-                  Previous page
-              
-              </Link>
 
-              <p className="bg-indigo-500 text-white py-1 px-2 rounded-md">
-                {page}
-              </p>
+          <Stack dir="ltr" className="w-full nextpage" display={"flex"} justifyContent={"center"} spacing={2}>
+            {coins.length >= 50 && (
+              <Pagination
+                count={coins.length}
+                page={page}
 
-              <Link className="border border-gray-400 rounded-lg my-3 py-2 px-6" href={`/cryptoMarket?page=${page + 1}`}>
-       
-                  Next page
-              
-              </Link>
-            </div>
-          ) : (
-            <div className="mb-10 mt-5"></div>
-          )}
+                color="primary"
+                shape="rounded"
+                onChange={(event, value) => {
+                  router.push(`/cryptoMarket?page=${value}`);
+                }}
+
+              />
+            )}
+          </Stack>
+
+
+
         </>
       )}
 
