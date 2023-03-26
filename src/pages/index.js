@@ -30,8 +30,8 @@ export default function Home({ coins, page }) {
 
   const router = useRouter()
   return (
-    <div className="overflow-x-auto">
-      <div className="w-2/3 ">
+    <div dir="rtl">
+      <div >
         <SectionHead />
       </div>
       <div className="overflow-x-auto mt-4 min-w-[360px]">

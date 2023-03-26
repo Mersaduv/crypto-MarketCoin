@@ -210,46 +210,34 @@ const Navbar = () => {
       </div>
 
       <Box display="flex" alignItems="center">
-        <Box display="flex" width="100%" alignItems="center">
-          <Box
-            display="flex"
-            alignItems="center"
-            justifyContent={{ xs: "space-between", md2: "flex-start" }}
-            width="100%"
-            gap={2}
-          >
-            <Typography variant="h6" component="div">
-              <Link href="/">MarketCoin</Link>
-            </Typography>
-            <Box
-              display="flex"
-              fontWeight="fontWeightBold"
-              flexDirection="row"
-              fontSize={16}
-              alignItems="center"
-              width="auto"
-              justifyContent="center"
-              visibility={{ xs: "hidden", md2: "block" }}
-              gap={1}
-            >
-              <Cryptocurrency />
-              <Exchanges />
-              <Projects />
-            </Box>
+        <Box
+          display="flex"
+          alignItems="center"
+          justifyContent={{ xs: "space-between", md2: "flex-start" }}
+          width="100%"
+          gap={2}
+        >
+          <Typography variant="h6" component="div">
+            <Link href="/">MarketCoin</Link>
+          </Typography>
+          <div className="hidden md2:flex items-center py-4 ">
+            <Cryptocurrency />
+            <Exchanges />
+            <Projects />
+          </div>
 
-            <Box
-              display={{ xs: "flex", md2: "none" }}
-              alignItems="center"
-              gap={3}
-            >
-              {/* <FiSearch size="22px" /> */}
-              <BasicModal />
-              <div className="flex pr-3 lg:hidden">
-                <button type="button" onClick={() => setOpenMenu(true)}>
-                  <MenuIcon />
-                </button>
-              </div>
-            </Box>
+          <Box
+            display={{ xs: "flex", md2: "none" }}
+            alignItems={"center"}
+            gap={1}
+          >
+            {/* <FiSearch size="22px" /> */}
+            <BasicModal />
+            <div className="flex pr-3 ">
+              <button type="button" onClick={() => setOpenMenu(true)}>
+                <MenuIcon />
+              </button>
+            </div>
           </Box>
         </Box>
 

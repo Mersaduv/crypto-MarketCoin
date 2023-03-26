@@ -32,10 +32,11 @@ export default function BasicModal() {
 
       <button className='p-0 m-0 ' onClick={handleOpen}>
         <FiSearch
+          className=' mt-2 text-2xl'
 
-          size="22px"
         /></button>
       <Modal
+        
         open={openEnter}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"

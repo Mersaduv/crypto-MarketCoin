@@ -119,7 +119,7 @@ export default function SearchAutoComplate() {
     }
   };
   return (
-    <div className="autoComplate w-full flex items-center gap-x-2">
+    <div dir="rtl" className="autoComplate w-full flex items-center gap-x-2">
       <Link href="/watchList">
         <Typography
           sx={{
@@ -145,7 +145,7 @@ export default function SearchAutoComplate() {
         className="w-full bg-gray-100 hover:outline-blue-200 hover:outline border flex items-center mr-6 md:mr-0"
         {...getRootProps()}
       >
-        <Input
+        <Input 
           className="px-2 pb-2 pt-1 w-44 outline-none focus:border-none focus:outline-none mr-3 md2:mr-0"
           placeholder="جستجو..."
           onBlur={(event) => {
