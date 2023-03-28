@@ -142,11 +142,11 @@ export default function SearchAutoComplate() {
       </Link>
       <div
         id="autoComplated"
-        className="w-full bg-gray-100 hover:outline-blue-200 hover:outline border flex items-center mr-6 md:mr-0"
+        className="w-full bg-gray-100 hover:outline-blue-200 hover:outline border flex justify-between items-center mr-6 md2:mr-0"
         {...getRootProps()}
       >
-        <Input 
-          className="px-2 pb-2 pt-1 w-44 outline-none focus:border-none focus:outline-none mr-3 md2:mr-0"
+        <Input
+          className="px-2 pb-2 pt-1  font-normal w-44 outline-none focus:border-none focus:outline-none mr-3 md2:mr-0"
           placeholder="جستجو..."
           onBlur={(event) => {
             onBlur(event);

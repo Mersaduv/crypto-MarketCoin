@@ -39,9 +39,9 @@ const index = ({ coin }) => {
       <div className="flex flex-col relative">
 
         {/* Detail */}
-        <div className="w-full flex flex-col lg:flex-row items-center gap-12">
+        <div className="w-full flex flex-col lg:flex-row items-center gap-12 mr-8 md:mr-1">
 
-          <div className="w-[350px] text-center">
+          <div className="w-[350px] text-center ">
             <img src={coin.image.large} alt={coin.name} width={200} height={200} />
           </div>
 

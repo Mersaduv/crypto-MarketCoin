@@ -60,7 +60,7 @@ const Exchanges = () => {
       <div className="w-full mx-4 md:hidden">
         <div
           className={`${
-            isOpen && "text-blue-600"
+            isOpen && "text-blue-600 "
           } font-bold py-4 text-xl flex justify-between items-center`}
           onClick={() => setIsOpen((prev) => !prev)}
         >

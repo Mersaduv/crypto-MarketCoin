@@ -1,11 +1,15 @@
 // react icon
 import { FaGoogle } from "react-icons/fa";
-
+import { toast, useToast } from "react-toastify";
 // formik
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { AuthState } from "@/src/context/AuthProvider";
+import { useContext, useEffect } from "react";
+import Cookies from 'js-cookie';
 
-const LogIn = () => {
+const LogIn = ({ setProfileModal }) => {
+  const { state, setState } = useContext(AuthState)
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -14,23 +18,64 @@ const LogIn = () => {
       accepted: false,
     },
     validateOnMount: true,
-    // If needed, the naked note will be added with text, but not used in this component
-    validationSchema: Yup.object({
-      name: Yup.string()
-        .required("Name is Required!")
-        .max(15, "Name must be less than 15 characters."),
-      email: Yup.string()
-        .required("Email is Required!")
-        .email("Invalid E-mail adress."),
-      password: Yup.string()
-        .required("Password is Required!")
-        .min(8, "Password must be more than 8 characters."),
-      accepted: Yup.bool().oneOf(
-        [true],
-        "You need to accept the terms and conditions"
-      ),
-    }),
+
+    onSubmit: async (values) => {
+      const { email, password, accepted } = values;
+      if (accepted) {
+        Cookies.set('email', email);
+        Cookies.set('password', password);
+      }
+      if (email === state.data.email && password === state.data.password) {
+        console.log(state);
+
+        // Login successful
+        setState({ data: state.data, register: true })
+        toast.success(`${state.data.name}  خوشآمدی`);
+
+        setProfileModal(false)
+        console.log(state.register);
+      } else {
+        // Login failed
+        toast.error("دوباره تلاش کنید!");
+      }
+    },
+
+    //-------------------------   
+    // If you want to set up data, this service is ready
+
+    // onSubmit: async (values) => {
+    //   const { email, password } = values;
+    //   const valueUser = {
+    //     email,
+    //     password,
+    //   };
+
+    //   try {
+    //     const { data } = await loginForm(valueUser);
+    //     toast.success(`welcome ${data.name} !`);
+    //     setAuth(data);
+    //     Navigates(redirect);
+    //   } catch (error) {
+    //     toast.error(error.response.data.message);
+    //   }
+    // }
+    //----------------------------
   });
+
+  useEffect(() => {
+    const email = Cookies.get('email');
+    const password = Cookies.get('password');
+
+    if (email && password) {
+      // Pre-fill the email and password fields
+      formik.setValues({
+        ...formik.values,
+        email,
+        password,
+        accepted: true, // Check the "Remember Me" checkbox
+      });
+    }
+  }, []); // Run this effect only once, on component mount
 
   return (
     <div className="z-30">

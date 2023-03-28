@@ -31,7 +31,8 @@ export default function Home({ coins, page }) {
   const router = useRouter()
   return (
     <div dir="rtl">
-      <div >
+
+      <div className="mt-8 mb-6 mx-2">
         <SectionHead />
       </div>
       <div className="overflow-x-auto mt-4 min-w-[360px]">

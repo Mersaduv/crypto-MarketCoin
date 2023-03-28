@@ -1,11 +1,18 @@
 // react icon
 import { FaGoogle } from "react-icons/fa";
+import { toast, useToast } from "react-toastify";
 
 // formik
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { useRouter } from "next/router";
+import { useContext } from "react";
+import { AuthState } from "@/src/context/AuthProvider";
 
-const SignUp = () => {
+const SignUp = ({ setProfileModal }) => {
+  const { state, setState } = useContext(AuthState)
+  const router = useRouter()
+
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -35,22 +42,28 @@ const SignUp = () => {
     }),
     validateOnMount: true,
     onSubmit: async (values) => {
-      const { name, email, password } = values;
+      const { name, email, password, accepted } = values;
       const valueUser = {
         name,
         email,
-        phoneNumber,
         password,
+        accepted
       };
+      console.log(valueUser);
       try {
-        const response = await signupForm(valueUser);
-        setStateProvider(response.data);
-        toast.success(`your registred ${response.data.name} !`);
-        Navigates(redirect);
+        // If you want to set up data, this service is ready
+        // const response = await signupForm(valueUser);
+        // toast.success(`your registred ${response.data.name} !`);
+        // ------------------------------------
+        setState({ data: valueUser, register: false });
+        toast.success(`عزیز با موفقیت ثبت نام شدید ${valueUser.name} !`)
+        // router.refresh();
+        setProfileModal(false)
       } catch (error) {
-        if (error.response && error.response.data) {
-          toast.error(error.response.data.message);
-        }
+        // if (error.response && error.response.data) {
+        //   toast.error(error.response.data.message);
+        // }
+        toast.error("دوباره تلاش کنید !!")
       }
     },
   });
@@ -162,7 +175,8 @@ const SignUp = () => {
                      outline-none ring-offset-2 ring-indigo-600 focus:ring-2 ${!formik.isValid && "cursor-not-allowed"
               }`}
           >
-            Create
+            ایجاد
+
           </button>
 
           <button
