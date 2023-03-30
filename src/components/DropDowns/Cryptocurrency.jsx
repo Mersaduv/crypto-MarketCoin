@@ -15,7 +15,7 @@ const Cryptocurrency = () => {
 
   return (
     <div className="flex items-center justify-center">
-      <div className=" hidden md:block relative group">
+      <div className=" hidden md2:block relative group">
         <div
           onMouseEnter={() => setIsOpen(true)}
           onMouseLeave={() => setIsOpen(false)}
@@ -49,7 +49,7 @@ const Cryptocurrency = () => {
                 <div>
                   <Link
                     href="/globalChart"
-                    className="hover:bg-gray-50 inline-block w-full py-2 px-1"
+                    className="hover:bg-gray-50 font-bold inline-block w-full py-2 px-1"
                   >
                     {" "}
                     <TrendingUpIcon className="ml-2" />
@@ -109,10 +109,11 @@ const Cryptocurrency = () => {
       </div>
 
       {/* menu dropdown first mobile */}
-      <div className="w-full mx-4 md:hidden">
+      <div className="w-full mx-4 md2:hidden">
         <div
           className={`${
-            isOpen && "text-blue-600 mx-4"
+            isOpen &&
+            "text-blue-600  font-bold py-4 text-xl flex justify-between items-center pr-1.5 "
           } font-bold py-4 text-xl flex justify-between items-center`}
           onClick={() => setIsOpen((prev) => !prev)}
         >
@@ -143,7 +144,7 @@ const Cryptocurrency = () => {
               <div>
                 <Link
                   href="/globalChart"
-                  className="hover:bg-gray-50 inline-block w-full py-2 px-1"
+                  className="hover:bg-gray-50 font-bold inline-block w-full py-2 px-1"
                 >
                   {" "}
                   <TrendingUpIcon className="ml-2" />

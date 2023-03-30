@@ -26,7 +26,7 @@ const CryptoList = ({ data }) => {
             دنبال کردن
           </th>
           <th
-            className={`text-start bg-white dark:bg-black sticky right-0 text-gray-500 dark:text-gray-300 pb-2 pl-6 lg:p-2 font-medium text-sm`}
+            className={`text-start bg-[#f9fafb] dark:bg-black  text-gray-500 dark:text-gray-300 pb-2 pl-6 lg:p-2 font-medium text-sm`}
           >
             نام
           </th>
@@ -46,7 +46,10 @@ const CryptoList = ({ data }) => {
       </thead>
       <tbody>
         {data.map((coin) => (
-          <tr key={coin.id} className="border-y border-gray-300">
+          <tr
+            key={coin.id}
+            className="border-y bg-gray-50 hover:bg-gray-100 border-gray-300"
+          >
             <td>
               <button
                 onClick={() => {
@@ -73,7 +76,7 @@ const CryptoList = ({ data }) => {
                 )}
               </button>
             </td>
-            <td className="cursor-pointer whitespace-pre-wrap  sticky right-0 bg-white">
+            <td className="cursor-pointer  whitespace-pre-wrap   ">
               <Link
                 href="/cryptoMarket/[coinId]"
                 as={`/cryptoMarket/${coin.id}`}
@@ -113,7 +116,7 @@ const CryptoList = ({ data }) => {
             <td>
               <div className="text-[12px] lg:text-[14px] mr-2 font-bold  md:flex">
                 {/* <CoinChart coin={coin} time7d={7} /> */}
-                 نمودار دردسترس نیست
+                نمودار دردسترس نیست
               </div>
             </td>
           </tr>

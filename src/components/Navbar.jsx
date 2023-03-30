@@ -20,6 +20,9 @@ import BasicModal from "./modals/BasicModal";
 import { Dialog, Transition } from "@headlessui/react";
 import { AuthState } from "@/src/context/AuthProvider";
 import AccountMenu from "./AccountMenu";
+import { useRouter } from "next/router";
+import Cookies from "js-cookie";
+import AccountMenuDown from "./DropDowns/AccountMenuDown";
 
 const Navbar = () => {
   const [profileModal, setProfileModal] = useState(false);
@@ -29,7 +32,6 @@ const Navbar = () => {
 
   const [openMenu, setOpenMenu] = useState(false);
   const authUser = React.useContext(AuthState);
-  console.log(authUser.state.register);
   useEffect(() => {
     axios
       .get(
@@ -56,9 +58,15 @@ const Navbar = () => {
     setprofileSignUp(false);
   };
 
-  // const classes = useStyles();
+  // const router = useRouter();
+
+  const handleLogout = () => {
+    Cookies.remove("email");
+    Cookies.remove("password");
+    authUser.setState({ data: authUser.state.data, register: false });
+  };
   return (
-    <div className="border-y  max-w-8xl m-auto flex flex-col-reverse md2:flex-col">
+    <div className="border-y   max-w-screen-2xl bg-white m-auto flex flex-col-reverse md2:flex-col">
       {/* header show price market  */}
       <div className="md2:flex md2:justify-between w-full font-semibold  py-1.5 border-b">
         <div className="flex md2:flex-1 whitespace-nowrap md2:py-3   overflow-x-auto md2:overflow-x-auto gap-x-4">
@@ -104,17 +112,20 @@ const Navbar = () => {
           </div>
         </div>
 
-        <div className="w-[300px] flex  items-center  border-r pr-4   gap-x-1 ">
+        <div className="w-[310px] flex  items-center  border-r pr-4   gap-x-1 ">
           <div className="w-full flex justify-end gap-x-4">
             {/* dark mode and language  */}
-            <div className=" md2:flex hidden items-center gap-x-2    ">
-              <FaMoon />
+            <div className=" md2:flex hidden  justify-between items-center gap-x-2    ">
+              <FaMoon className=" text-2xl p-0.5  rounded-lg hover:shadow-lg cursor-pointer" />
+
               <LanguageDropdown />
             </div>
             {/* Profile */}
             {authUser.state.register ? (
               //profile icon
-              <AccountMenu />
+              <div className="hidden md2:block">
+                <AccountMenu />
+              </div>
             ) : (
               <div
                 id="account"
@@ -345,28 +356,41 @@ const Navbar = () => {
                         </Typography>
                       </Link>
                     </Typography>
+                    {authUser.state.register && <AccountMenuDown />}
+
                     {/* Profile first mobile  */}
-                    <div
-                      id="accountmobile"
-                      className="text-sm gap-x-2 mt-8 whitespace-nowrap font-bold flex flex-col px-4 gap-y-2 "
-                      onClick={() => {
-                        setProfileModal(true);
-                        setOpenMenu(false);
-                      }}
-                    >
+                    {authUser.state.register ? (
                       <button
-                        onClick={signUpHandler}
-                        className="py-2   font-semibold text-base bg-blue-600 hover:bg-blue-700 rounded-md  text-white"
+                        id="accountmobile"
+                        onClick={handleLogout}
+                        className=" mx-4  gap-x-2 mt-8  px-4  py-2    font-semibold text-base border   hover:bg-gray-100 bg-gray-50 rounded-md "
                       >
-                        ثبت نام
+                        خروج از حساب
                       </button>
-                      <button
-                        onClick={logInHandler}
-                        className="py-2    font-semibold text-base border text-blue-600   hover:bg-gray-100 bg-gray-50 rounded-md "
+                    ) : (
+                      <div
+                        id="accountmobile"
+                        className="text-sm gap-x-2 mt-8 whitespace-nowrap font-bold flex flex-col px-4 gap-y-2 "
+                        onClick={() => {
+                          setProfileModal(true);
+                          setOpenMenu(false);
+                        }}
                       >
-                        ورود
-                      </button>
-                    </div>
+                        <button
+                          onClick={signUpHandler}
+                          className="py-2   font-semibold text-base bg-blue-600 hover:bg-blue-700 rounded-md  text-white"
+                        >
+                          ثبت نام
+                        </button>
+                        <button
+                          onClick={logInHandler}
+                          className="py-2    font-semibold text-base border text-blue-600   hover:bg-gray-100 bg-gray-50 rounded-md "
+                        >
+                          ورود
+                        </button>
+                      </div>
+                    )}
+
                     {/* dark mode and language  */}
                     <div className="flex justify-between items-center   px-4 mt-7 gap-x-2   ">
                       <div className="bg-gray-100 p-3 rounded-md">

@@ -27,7 +27,7 @@ const ExgangesList = ({ data }) => {
             #
           </th>
           <th
-            className={`text-start sticky right-0 text-gray-500 dark:text-gray-300 pb-2 pl-6 lg:p-2 font-medium text-sm ${shadowClass}`}
+            className={`text-start  text-gray-500 dark:text-gray-300 pb-2 pl-6 lg:p-2 font-medium text-sm ${shadowClass}`}
           >
             صرافی
           </th>
@@ -47,15 +47,16 @@ const ExgangesList = ({ data }) => {
       </thead>
       <tbody>
         {data.map((ex) => (
-          <tr key={ex.id} className="border-y border-gray-300">
+          <tr
+            key={ex.id}
+            className="border-y bg-gray-50 hover:bg-gray-100 border-gray-300"
+          >
             <td>
               <button className=" text-sm text-gray-600 font-bold">
                 {ex.trust_score_rank}
               </button>
             </td>
-            <td
-              className={`py-4 flex gap-x-1 sticky right-0 bg-white items-center ${shadowClass}`}
-            >
+            <td className={`py-4 flex gap-x-1   items-center ${shadowClass}`}>
               <img
                 src={ex.image}
                 alt="icon"
@@ -63,7 +64,9 @@ const ExgangesList = ({ data }) => {
                 height={30}
                 className="rounded-full"
               />
-              <div className="text-sm cursor-pointer font-bold">{ex.name}</div>
+              <div className="text-sm cursor-pointer font-bold  overflow-hidden whitespace-nowrap overflow-ellipsis">
+                {ex.name}
+              </div>
               <div className="text-gray-400 dark:text-gray-300 font-bold text-[12px] ml-2">
                 <svg
                   width="20"
@@ -99,7 +102,15 @@ const ExgangesList = ({ data }) => {
             </td>
 
             <td>
-              <div className="text-[12px] lg:text-[14px] font-bold">
+              <div
+                className={`text-[12px] w-7 h-6 flex items-center justify-center rounded-lg text-white  lg:text-[14px] font-bold ${
+                  ex.trust_score < 4
+                    ? "bg-red-600"
+                    : ex.trust_score < 7
+                    ? "bg-orange-400"
+                    : "bg-green-500"
+                }`}
+              >
                 {ex.trust_score}
               </div>
             </td>
@@ -115,25 +126,7 @@ const ExgangesList = ({ data }) => {
             </td>
             <td>
               <div className="text-[12px] lg:text-[14px] font-bold  md:flex">
-                {/* <CoinChart coin={coin} time7d={7} /> */}
-                اختلال شبکه نمودار{" "}
-                <span>
-                  <svg
-                    style={{ color: "rgb(220 38 38)", width: "20px" }}
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="w-6 h-6"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M2.25 6L9 12.75l4.286-4.286a11.948 11.948 0 014.306 6.43l.776 2.898m0 0l3.182-5.511m-3.182 5.51l-5.511-3.181"
-                    />
-                  </svg>
-                </span>
+                نمودار دردسترس نیست
               </div>
             </td>
           </tr>

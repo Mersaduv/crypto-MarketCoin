@@ -23,6 +23,7 @@ export const ColorContextProvider = ({ children }) => {
                 sm: 640,
                 md: 768,
                 md2: 800,
+                md3: 941,
                 lg: 1024,
                 xl: 1154
             }

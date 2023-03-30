@@ -19,7 +19,7 @@ const indexs = ({ data }) => {
             <hr />
 
 
-            <div className="my-2 text-center font-bold">ضمن اطلاع رسانی سرویس های بخش تبادله Decentralized Exchange متوقف شده </div>
+            <div className="my-4 text-center font-bold">ضمن اطلاع رسانی سرویس های بخش تبادله Decentralized Exchange متوقف شده </div>
             <DecentralizedExchanges />
 
 

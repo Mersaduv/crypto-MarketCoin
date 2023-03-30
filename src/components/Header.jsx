@@ -2,7 +2,7 @@ import Navbar from "./Navbar";
 
 const Header = () => {
   return (
-    <div className="bg-[#f9fafb]">
+    <div className="bg-white px-2">
       <Navbar />
     </div>
   );

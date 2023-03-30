@@ -7,9 +7,12 @@ import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import { useRouter } from "next/router";
 import SectionHead from "@/src/components/SectionHead";
+import { fetchCoins } from "@/src/redux/cryptoSlice/cryptoSlice";
+import store from "@/src/redux/store";
 
 
-const index = ({ coins, page }) => {
+const index = ({ coinData, page }) => {
+  console.log(coinData);
   const [hasWindow, setHasWindow] = useState(false);
   const router = useRouter()
   useEffect(() => {
@@ -18,24 +21,32 @@ const index = ({ coins, page }) => {
     }
   }, []);
 
+
+  // if (error) {
+  //   return <p>An error occurred</p>;
+  // }
+
+  // if (!coinData) {
+  //   return <p>Loading...</p>;
+  // }
   return (
 
-    <div className="max-w-screen-2xl m-auto ">
+    <div className="max-w-screen-2xl m-auto  ">
       {hasWindow && (
         <>
 
-          <div className="w-2/3 ">
+          <div className="w-2/3  mt-8 mb-6 mx-2">
             <SectionHead />
           </div>
-          <div>
-            <CryptoList data={coins} />
+          <div className="overflow-x-auto mt-4 min-w-[360px]">
+            <CryptoList data={coinData} />
           </div>
 
 
           <Stack dir="ltr" className="w-full nextpage" display={"flex"} justifyContent={"center"} spacing={2}>
-            {coins.length >= 50 && (
+            {coinData.length >= 50 && (
               <Pagination
-                count={coins.length}
+                count={coinData.length}
                 page={page}
 
                 color="primary"
@@ -57,6 +68,30 @@ const index = ({ coins, page }) => {
     </div>
   );
 };
+// Get the data in the next.js page using getServerSideProps
+// export const getServerSideProps = async ({ query }) => {
+//   let page = +query.page || 1;
+//   const { dispatch, getState } = store;
+
+//   try {
+//     // Dispatch the action and wait for it to resolve
+//     await dispatch(fetchCoins(page)).unwrap();
+//     const coinData = getState().cryptos.coins;
+//     return {
+//       props: {
+//         coinData,
+//         page
+//       },
+//     };
+//   } catch (error) {
+//     console.error(error);
+//     return {
+//       props: {
+//         error: error.message,
+//       },
+//     };
+//   }
+// };
 
 export const getServerSideProps = async ({ query }) => {
   let page = +query.page || 1;
@@ -65,11 +100,11 @@ export const getServerSideProps = async ({ query }) => {
     const result = await axios.get(
       `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=${page}&sparkline=false`
     );
-    const coins = result.data;
+    const coinData = result.data;
 
     return {
       props: {
-        coins,
+        coinData,
         page,
       },
     };
@@ -78,7 +113,7 @@ export const getServerSideProps = async ({ query }) => {
 
     return {
       props: {
-        coins: [],
+        coinData: [],
         page,
       },
     };

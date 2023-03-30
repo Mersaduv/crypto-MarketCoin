@@ -6,7 +6,7 @@ const DecentralizedExchanges = () => {
           <th className="text-center lg:text-start text-gray-500 dark:text-gray-300 pb-2 pl-6 lg:p-2 font-medium text-sm ">
             #
           </th>
-          <th className="text-start sticky right-0 text-gray-500 dark:text-gray-300 pb-2 pl-6 lg:p-2 font-medium text-sm">
+          <th className="text-start  text-gray-500 dark:text-gray-300 pb-2 pl-6 lg:p-2 font-medium text-sm">
             صرافی
           </th>
           <th className="text-start text-gray-500 dark:text-gray-300 pb-2 pl-6 font-medium text-sm">
@@ -25,7 +25,7 @@ const DecentralizedExchanges = () => {
       </thead>
       <tbody>
         {/* {data.map((ex) => ( */}
-        <tr className="border-y border-gray-300">
+        <tr className="border-y bg-gray-50 hover:bg-gray-100 border-gray-300">
           <td>
             <button className=" text-sm text-gray-600 font-bold">
               {/* {ex.trust_score_rank} */}
@@ -33,7 +33,7 @@ const DecentralizedExchanges = () => {
             </button>
           </td>
           <td
-            className={`py-4 flex gap-x-1 sticky right-0 bg-white items-center`}
+            className={`py-4 flex gap-x-1 sticky items-center`}
           >
             #آیکون
             {/* <img

@@ -14,7 +14,7 @@ import { BsMedium } from "react-icons/bs";
 
 const Footer = () => {
   return (
-    <div className=" m-auto p-2 border-t pt-5 bg-[#f9fafb]">
+    <div className="   max-w-screen-2xl  m-auto p-2 border-t pt-5  max-:">
       <h3 className="text-3xl text-center lg:text-start font-bold mb-12">
         Crypto NextJs
       </h3>

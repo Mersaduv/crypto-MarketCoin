@@ -9,7 +9,7 @@ const Exchanges = () => {
 
   return (
     <div className="flex items-center justify-center">
-      <div className="relative group hidden md:block">
+      <div className="relative group hidden md2:block">
         <div
           onMouseEnter={() => setIsOpen(true)}
           onMouseLeave={() => setIsOpen(false)}
@@ -57,7 +57,7 @@ const Exchanges = () => {
       </div>
 
       {/* menu dropdown first mobile */}
-      <div className="w-full mx-4 md:hidden">
+      <div className="w-full mx-4 md2:hidden">
         <div
           className={`${
             isOpen && "text-blue-600 "

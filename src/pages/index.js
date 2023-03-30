@@ -1,12 +1,10 @@
 // import Link from "next/link";
 import CryptoList from "../components/CryptoList";
 import SectionHead from "../components/SectionHead";
-// import { fetchCoins } from "../redux/cryptoSlice/cryptoSlice";
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import { useRouter } from "next/router";
 import letter from "../../public/newsletter_bg_light.svg"
-
 import { getData } from "../services/serviceData";
 import axios from "axios";
 import Image from "next/image";
@@ -15,7 +13,10 @@ import SignUp from "../components/userAccount/SignUp";
 import LogIn from "../components/userAccount/LogIn";
 import CloseIcon from "@mui/icons-material/Close";
 import { HiOutlineMinusSm } from "react-icons/hi";
-export default function Home({ coins, page }) {
+import store from "../redux/store";
+import { fetchCoins } from "../redux/cryptoSlice/cryptoSlice";
+import Slider from "../components/Slider";
+export default function Home({ coinData, page, error, coinSlide }) {
   const [profileModal, setProfileModal] = useState(false);
   const [profileSignUp, setprofileSignUp] = useState(true);
   const [profileLogIn, setprofileLogIn] = useState(false);
@@ -27,22 +28,37 @@ export default function Home({ coins, page }) {
     setprofileLogIn(true);
     setprofileSignUp(false);
   };
-
+  // if (coinData) {
+  //   console.log(coinData);
+  // }
   const router = useRouter()
+
+  // if (error) {
+  //   return <p>An error occurred</p>;
+  // }
+
+  // if (!coinData) {
+  //   return <p>Loading...</p>;
+  // }
   return (
     <div dir="rtl">
 
       <div className="mt-8 mb-6 mx-2">
         <SectionHead />
+
+        <div className="-my-14 hidden md2:block ">
+          <Slider />
+        </div>
+
       </div>
       <div className="overflow-x-auto mt-4 min-w-[360px]">
 
-        <CryptoList data={coins} />
+        <CryptoList data={coinData} />
 
         <Stack dir="ltr" className="w-full mb-8 nextpage" display={"flex"} justifyContent={"center"} marginTop={2} spacing={2}>
-          {coins.length >= 50 && (
+          {coinData.length >= 50 && (
             <Pagination
-              count={coins.length}
+              count={coinData.length}
               page={page}
 
               color="primary"
@@ -129,6 +145,31 @@ export default function Home({ coins, page }) {
     </div>
   );
 }
+
+// Get the data in the next.js page using getServerSideProps
+// export const getServerSideProps = async ({ query }) => {
+//   let page = +query.page || 1;
+//   const { dispatch, getState } = store;
+
+//   try {
+//     // Dispatch the action and wait for it to resolve
+//     await dispatch(fetchCoins(page))
+//     const coinData = getState().cryptos.coins;
+//     return {
+//       props: {
+//         coinData,
+//         page
+//       },
+//     };
+//   } catch (error) {
+//     console.error(error);
+//     return {
+//       props: {
+//         error: error.message,
+//       },
+//     };
+//   }
+// };
 export const getServerSideProps = async ({ query }) => {
   let page = +query.page || 1;
 
@@ -136,11 +177,11 @@ export const getServerSideProps = async ({ query }) => {
     const result = await axios.get(
       `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=${page}&sparkline=false`
     );
-    const coins = result.data;
+    const coinData = result.data;
 
     return {
       props: {
-        coins,
+        coinData,
         page,
       },
     };
@@ -149,16 +190,9 @@ export const getServerSideProps = async ({ query }) => {
 
     return {
       props: {
-        coins: [],
+        coinData: [],
         page,
       },
     };
   }
 };
-// export async function getServerSideProps() {
-//   const { data } = await getData();
-
-//   // const { data } = await fetchCoins(); درخواست دیتا با موفقیت انجام نشد !!!!!
-
-//   return { props: { data } };
-// }

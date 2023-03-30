@@ -26,7 +26,7 @@ const SectionHead = () => {
             },
           }
         );
-
+        console.log(response);
         const totalMarketCap = response.data.data.quote.USD.total_market_cap;
         const totalMarketCap24 = response.data.data.quote.USD.total_volume_24h;
         const stableVolume24 = response.data.data.stablecoin_volume_24h;
@@ -117,8 +117,8 @@ const SectionHead = () => {
                 1
               )
             )}
-          </Typography>
-        {" "}  نسبت به روز قبل {" "}
+          </Typography>{" "}
+          نسبت به روز قبل{" "}
           {marketdata.data.quote.USD.total_market_cap_yesterday_percentage_change.toFixed(
             1
           ) > 0
@@ -166,8 +166,8 @@ const SectionHead = () => {
               {marketdata.data.btc_dominance.toFixed(2)}٪ است که{" "}
               {ShowPrice(marketdata.percentageChange.toFixed(2))} نسبت به روز
               قبل
-              {marketdata.percentageChange > 0 ? " افزایش" : "  کاهش "} {" "}
-              یافته است.
+              {marketdata.percentageChange > 0 ? " افزایش" : "  کاهش "} یافته
+              است.
             </Typography>
           </div>
         </div>

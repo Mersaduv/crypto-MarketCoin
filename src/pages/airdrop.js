@@ -11,7 +11,7 @@ const indexs = () => {
                             <th className="text-center lg:text-start text-gray-500 dark:text-gray-300 pb-2 pl-6 lg:p-2 font-medium text-sm ">
                                 #
                             </th>
-                            <th className="text-start   text-gray-500 dark:text-gray-300 pb-2 pl-6 lg:p-2 font-medium text-sm">
+                            <th className="text-start   text-gray-500 dark:text-gray-300 pb-2 pl-6 font-medium text-sm">
                                 پروژه
                             </th>
                             <th className="text-start text-gray-500 dark:text-gray-300 pb-2 pl-6 font-medium text-sm">

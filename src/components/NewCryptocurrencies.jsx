@@ -28,7 +28,7 @@ const NewCryptocurrencies = ({ data }) => {
             دنبال کردن
           </th>
           <th
-            className={`text-start bg-white dark:bg-black sticky right-0 text-gray-500 dark:text-gray-300 pb-2 pl-6 lg:p-2 font-medium text-sm`}
+            className={`text-start  dark:bg-black text-gray-500 dark:text-gray-300 pb-2 pl-6 lg:p-2 font-medium text-sm`}
           >
             نام
           </th>
@@ -51,7 +51,7 @@ const NewCryptocurrencies = ({ data }) => {
       </thead>
       <tbody>
         {data.map((coin) => (
-          <tr key={coin.id} className="border-y border-gray-300">
+          <tr key={coin.id} className="border-y bg-gray-50 hover:bg-gray-100 border-gray-300">
             <td>
               <button
                 onClick={() => {
@@ -78,7 +78,7 @@ const NewCryptocurrencies = ({ data }) => {
                 )}
               </button>
             </td>
-            <td className="cursor-pointer whitespace-pre-wrap py-4 sticky right-0 bg-white">
+            <td className="cursor-pointer whitespace-pre-wrap py-4 ">
               {/* <img
                   src={coin.image}
                   alt="icon"

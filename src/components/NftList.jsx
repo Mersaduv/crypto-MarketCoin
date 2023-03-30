@@ -18,7 +18,7 @@ const NftList = ({ data }) => {
             دنبال کردن
           </th>
           <th
-            className={`text-start bg-white dark:bg-black sticky right-0 text-gray-500 dark:text-gray-300 pb-2 pl-6 lg:p-2 font-medium text-sm`}
+            className={`text-start  dark:bg-black  text-gray-500 dark:text-gray-300 pb-2 pl-6 lg:p-2 font-medium text-sm`}
           >
             نام
           </th>
@@ -33,7 +33,7 @@ const NftList = ({ data }) => {
       </thead>
       <tbody>
         {data.map((chain) => (
-          <tr key={chain.id} className="border-y border-gray-300">
+          <tr key={chain.id} className="border-y bg-gray-50 hover:bg-gray-100 border-gray-300">
             <td>
               <button
                 onClick={() => {
@@ -60,7 +60,7 @@ const NftList = ({ data }) => {
                 )}
               </button>
             </td>
-            <td className="cursor-pointer whitespace-pre-wrap sticky right-0 bg-white">
+            <td className="cursor-pointer whitespace-pre-wrap  ">
               <Link
                 href="/nft/[chainId]"
                 as={`/nft/${chain.id}`}
