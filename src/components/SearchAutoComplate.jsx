@@ -4,12 +4,11 @@ import { styled } from "@mui/system";
 import { getData } from "../services/serviceData";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import TrendBeta from "./TrendBeta";
+
 import { FcFlashOn } from "react-icons/fc";
 import StarIcon from "@mui/icons-material/Star";
 import useAutocomplete from "@mui/base/useAutocomplete";
 import { FiSearch } from "react-icons/fi";
-import { Typography } from "@mui/material";
 import { useEnterState } from "../context/enterState";
 
 const Input = styled("input")(({ theme }) => ({
@@ -46,7 +45,7 @@ export default function SearchAutoComplate() {
   const [dataCoin, setDataCoin] = React.useState([]);
   const [highlightedIndex, setHighlightedIndex] = React.useState(0); // initialize with a default value
   const [isOpen, setIsOpen] = React.useState(false); // add state for list visibility
-  const [selectedOptions, setSelectedOption] = React.useState(null);
+  // const [selectedOptions, .useState(null);
   const router = useRouter();
   React.useEffect(() => {
     const fetchDataSearch = async () => {
@@ -104,7 +103,7 @@ export default function SearchAutoComplate() {
 
       console.log(highlightedIndex, groupedOptions[highlightedIndex]);
       // reset highlightedIndex
-      setSelectedOption(selectedOption);
+
       setHighlightedIndex(0);
     } else if (event.key === "ArrowUp") {
       event.preventDefault();
@@ -119,34 +118,20 @@ export default function SearchAutoComplate() {
     }
   };
   return (
-    <div dir="rtl" className="autoComplate w-full flex items-center gap-x-2">
+    <div dir="rtl" className="autoComplated w-full flex items-center gap-x-2">
       <Link href="/watchList">
-        <Typography
-          sx={{
-            display: { xs: "none", md: "flex" },
-            padding: "6px",
-            whiteSpace: "nowrap",
-            gap: "2px",
-            "&:hover": {
-              color: "#000", // black color on hover
-              backgroundColor: "#f5f5f5", // lighten the gray color on hover
-            },
-          }}
-          component="span"
-          alignItems="center"
-          color="gray"
-        >
+        <div className="hidden md:flex p-3 whitespace-nowrap sm:gap-2 hover:text-black hover:bg-gray-100 text-gray">
           <StarIcon fontSize="small" />
-          <Typography variant="subtitle2">فهرست شما</Typography>
-        </Typography>
+          <span className="text-sm font-medium">فهرست شما</span>
+        </div>
       </Link>
       <div
         id="autoComplated"
-        className="w-full bg-gray-100 hover:outline-blue-200 hover:outline border flex justify-between items-center mr-6 md2:mr-0"
+        className="w-full bg-gray-100 hover:outline-blue-200  hover:outline border flex sm:justify-between items-center mr-6 md2:mr-0"
         {...getRootProps()}
       >
         <Input
-          className="px-2 pb-2 pt-1  font-normal w-44 outline-none focus:border-none focus:outline-none mr-3 md2:mr-0"
+          className="px-2 pb-2 pt-1  flex-1 font-normal sm:w-44 outline-none focus:border-none focus:outline-none mr-3 md2:mr-0"
           placeholder="جستجو..."
           onBlur={(event) => {
             onBlur(event);
@@ -168,7 +153,7 @@ export default function SearchAutoComplate() {
       {isOpen && groupedOptions.length > 0 ? (
         <>
           <Listbox
-            className="hidden md:flex  absolute shadow border-none flex-col w-80 top-10 left-0 "
+            className="hidden md:flex z-50  absolute shadow border-none flex-col w-80 top-10 left-0 "
             {...getListboxProps()}
           >
             <div
@@ -199,7 +184,7 @@ export default function SearchAutoComplate() {
                     "/cryptoMarket/[coinId]",
                     `/cryptoMarket/${option.id}`
                   );
-                  setSelectedOption(option);
+
                   setIsOpen(false); // close the list when an item is clicked
                   setHighlightedIndex(0);
                 }}
@@ -253,7 +238,7 @@ export default function SearchAutoComplate() {
                     "/cryptoMarket/[coinId]",
                     `/cryptoMarket/${option.id}`
                   );
-                  setSelectedOption(option);
+
                   setIsOpen(false); // close the list when an item is clicked
                   setHighlightedIndex(0);
                   setOpenEnter((prev) => !prev);

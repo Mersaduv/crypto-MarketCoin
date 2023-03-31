@@ -16,7 +16,7 @@ import { HiOutlineMinusSm } from "react-icons/hi";
 import store from "../redux/store";
 import { fetchCoins } from "../redux/cryptoSlice/cryptoSlice";
 import Slider from "../components/Slider";
-export default function Home({ coinData, page, error, coinSlide }) {
+export default function Home({ coinData, page, error }) {
   const [profileModal, setProfileModal] = useState(false);
   const [profileSignUp, setprofileSignUp] = useState(true);
   const [profileLogIn, setprofileLogIn] = useState(false);
@@ -147,52 +147,52 @@ export default function Home({ coinData, page, error, coinSlide }) {
 }
 
 // Get the data in the next.js page using getServerSideProps
-// export const getServerSideProps = async ({ query }) => {
-//   let page = +query.page || 1;
-//   const { dispatch, getState } = store;
-
-//   try {
-//     // Dispatch the action and wait for it to resolve
-//     await dispatch(fetchCoins(page))
-//     const coinData = getState().cryptos.coins;
-//     return {
-//       props: {
-//         coinData,
-//         page
-//       },
-//     };
-//   } catch (error) {
-//     console.error(error);
-//     return {
-//       props: {
-//         error: error.message,
-//       },
-//     };
-//   }
-// };
 export const getServerSideProps = async ({ query }) => {
   let page = +query.page || 1;
+  const { dispatch, getState } = store;
 
   try {
-    const result = await axios.get(
-      `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=${page}&sparkline=false`
-    );
-    const coinData = result.data;
-
+    // Dispatch the action and wait for it to resolve
+    await dispatch(fetchCoins(page))
+    const coinData = getState().cryptos.coins;
     return {
       props: {
         coinData,
-        page,
+        page
       },
     };
   } catch (error) {
     console.error(error);
-
     return {
       props: {
-        coinData: [],
-        page,
+        error: error,
       },
     };
   }
 };
+// export const getServerSideProps = async ({ query }) => {
+//   let page = +query.page || 1;
+
+//   try {
+//     const result = await axios.get(
+//       `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=${page}&sparkline=false`
+//     );
+//     const coinData = result.data;
+
+//     return {
+//       props: {
+//         coinData,
+//         page,
+//       },
+//     };
+//   } catch (error) {
+//     console.error(error);
+
+//     return {
+//       props: {
+//         coinData: [],
+//         page,
+//       },
+//     };
+//   }
+// };

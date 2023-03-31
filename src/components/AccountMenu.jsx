@@ -11,7 +11,7 @@ import PersonAdd from "@mui/icons-material/PersonAdd";
 import Logout from "@mui/icons-material/Logout";
 import { AuthState } from "../context/AuthProvider";
 
-export default function AccountMenu() {
+export default function AccountMenu({ handleLogout }) {
   const authUser = React.useContext(AuthState);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -97,7 +97,7 @@ export default function AccountMenu() {
           </ListItemIcon>
           ایجاد حساب دیگر
         </MenuItem>
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClose={handleClose} onClick={handleLogout}>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>

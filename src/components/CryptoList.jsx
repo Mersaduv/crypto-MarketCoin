@@ -22,24 +22,24 @@ const CryptoList = ({ data }) => {
     <table className="table-auto w-[98%] whitespace-nowrap m-auto overflow-x-auto ">
       <thead>
         <tr>
-          <th className="text-center lg:text-start text-gray-500 dark:text-gray-300 pb-2 pl-6 lg:p-2 font-medium text-sm ">
+          <th className="text-center lg:text-start text-gray-500  pb-2 pl-6 lg:p-2 font-medium text-sm ">
             دنبال کردن
           </th>
           <th
-            className={`text-start bg-[#f9fafb] dark:bg-black  text-gray-500 dark:text-gray-300 pb-2 pl-6 lg:p-2 font-medium text-sm`}
+            className={`text-start bg-[#f9fafb]   text-gray-500  pb-2 pl-6 lg:p-2 font-medium text-sm`}
           >
             نام
           </th>
-          <th className="text-start pr-4 text-gray-500 dark:text-gray-300 pb-2 pl-6 font-medium text-sm">
+          <th className="text-start pr-4 text-gray-500  pb-2 pl-6 font-medium text-sm">
             % 24H
           </th>
-          <th className="text-start text-gray-500 dark:text-gray-300 pb-2 pl-6 font-medium text-sm  ">
+          <th className="text-start text-gray-500  pb-2 pl-6 font-medium text-sm  ">
             قیمت
           </th>
-          <th className="text-start pr-2 text-gray-500 dark:text-gray-300 pb-2 pl-6 font-medium text-sm  md:table-cell">
+          <th className="text-start pr-2 text-gray-500  pb-2 pl-6 font-medium text-sm  md:table-cell">
             مارکت
           </th>
-          <th className="text-start pr-2 text-gray-500 dark:text-gray-300 pb-2 pl-6 font-medium text-sm  md:table-cell">
+          <th className="text-start pr-2 text-gray-500  pb-2 pl-6 font-medium text-sm  md:table-cell">
             وضعیت هفته
           </th>
         </tr>
@@ -91,7 +91,7 @@ const CryptoList = ({ data }) => {
                 />
                 <div className="text-sm font-bold">
                   {coin.name}
-                  <div className="text-gray-400 dark:text-gray-300 font-bold text-[12px] ml-2">
+                  <div className="text-gray-400  font-bold text-[12px] ml-2">
                     {coin.symbol.toLocaleUpperCase()}
                   </div>
                 </div>

@@ -5,42 +5,30 @@ const ExgangesList = ({ data }) => {
   // if (error) return <p>Error: {error}</p>;
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     const isElementVisible =
-  //       window.scrollX /* replace with the position of the element on the page */ >
-  //       setIsScrolled(isElementVisible);
-  //   };
 
-  //   window.addEventListener("scroll", handleScroll);
-
-  //   return () => {
-  //     window.removeEventListener("scroll", handleScroll);
-  //   };
-  // }, []);
   const shadowClass = isScrolled ? "shadow" : "";
   return (
     <table className="table-auto w-[98%] whitespace-nowrap m-auto overflow-x-auto">
       <thead>
         <tr>
-          <th className="text-center lg:text-start text-gray-500 dark:text-gray-300 pb-2 pl-6 lg:p-2 font-medium text-sm ">
+          <th className="text-center lg:text-start text-gray-500  pb-2 pl-6 lg:p-2 font-medium text-sm ">
             #
           </th>
           <th
-            className={`text-start  text-gray-500 dark:text-gray-300 pb-2 pl-6 lg:p-2 font-medium text-sm ${shadowClass}`}
+            className={`text-start  text-gray-500  pb-2 pl-6 lg:p-2 font-medium text-sm ${shadowClass}`}
           >
             صرافی
           </th>
-          <th className="text-start text-gray-500 dark:text-gray-300 pb-2 pl-6 font-medium text-sm">
+          <th className="text-start text-gray-500  pb-2 pl-6 font-medium text-sm">
             امتیاز
           </th>
-          <th className="text-start text-gray-500 dark:text-gray-300 pb-2 pl-6 font-medium text-sm  ">
+          <th className="text-start text-gray-500  pb-2 pl-6 font-medium text-sm  ">
             معاملات بیتکوین 24h
           </th>
-          <th className="text-start text-gray-500 dark:text-gray-300 pb-2 pl-6 font-medium text-sm  md:table-cell">
+          <th className="text-start text-gray-500  pb-2 pl-6 font-medium text-sm  md:table-cell">
             سال تاسیس
           </th>
-          <th className="text-start text-gray-500 dark:text-gray-300 pb-2 pl-6 font-medium text-sm  md:table-cell">
+          <th className="text-start text-gray-500  pb-2 pl-6 font-medium text-sm  md:table-cell">
             وضعیت هفته
           </th>
         </tr>
@@ -67,7 +55,7 @@ const ExgangesList = ({ data }) => {
               <div className="text-sm cursor-pointer font-bold  overflow-hidden whitespace-nowrap overflow-ellipsis">
                 {ex.name}
               </div>
-              <div className="text-gray-400 dark:text-gray-300 font-bold text-[12px] ml-2">
+              <div className="text-gray-400  font-bold text-[12px] ml-2">
                 <svg
                   width="20"
                   height="20"

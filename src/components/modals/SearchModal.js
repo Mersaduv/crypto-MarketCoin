@@ -6,7 +6,6 @@ import Modal from '@mui/material/Modal';
 import { FiSearch } from "react-icons/fi";
 import SearchAutoComplate from '../SearchAutoComplate';
 import { useEnterState } from '@/src/context/enterState';
-import { Hidden } from '@mui/material';
 
 const style = {
   position: 'absolute',

@@ -103,43 +103,41 @@ const SectionHead = () => {
   return (
     <section>
       {/*Displays a section*/}
-      <Typography className="font-bold" variant="h4">
+      <h1 className="font-bold text-3xl mb-3">
         میزان رمزارزها امروز براساس حجم بازار
         {/*Displays the heading content*/}
-      </Typography>
+      </h1>
       {marketdata.data && (
         <div>
           مجموعه بازار رمزارز جهان در حال حاضر {marketdata.totalMarket} میلیارد
           دلار است، که{" "}
-          <Typography variant="span">
+          <span>
             {ShowPrice(
               marketdata.data.quote.USD.total_market_cap_yesterday_percentage_change.toFixed(
                 1
               )
             )}
-          </Typography>{" "}
+          </span>{" "}
           نسبت به روز قبل{" "}
           {marketdata.data.quote.USD.total_market_cap_yesterday_percentage_change.toFixed(
             1
           ) > 0
             ? " افزایش "
             : "  کاهش "}{" "}
-          یافته است.
+          یافته است.{" "}
+          <p
+            onClick={() => setMore((prev) => !prev)}
+            className={` text-[#84abff] font-bold underline inline-block cursor-pointer`}
+          >
+            {/*Clickable Div*/}
+            نمایش {!showMore ? " بیشتر" : "کمتر "}
+          </p>
         </div>
       )}
 
-      <Typography
-        variant="body1"
-        onClick={() => setMore((prev) => !prev)}
-        className={` text-[#84abff] font-bold underline inline-block cursor-pointer`}
-      >
-        {/*Clickable Div*/}
-        نمایش {!showMore ? " بیشتر" : "کمتر "}
-      </Typography>
-
       {showMore && (
         <div>
-          <Typography component="span" variant="body2">
+          <p component="span" variant="body2">
             {/*If showMore is true then renders below div*/}
             حجم بازار کل رمزارز در طول ۲۴ ساعت گذشته{" "}
             {/*Displays Volume of Cryptocurrency Market in Last 24 hours */}
@@ -156,9 +154,9 @@ const SectionHead = () => {
               : "  کاهش "}
             {/*Displays the percentage Change in Total volume of cryptocurrency market in last 24 hour*/}
             پیدا کرده است.
-          </Typography>
+          </p>
           <div>
-            <Typography component="span" variant="body2">
+            <p>
               حجم DeFi در حال حاضر {marketdata.defiVolume} میلیارد دلار است.
               {/*Displays the new information about DeFi*/}
               حجم همه stable coin ها در حال حاضر {marketdata.stableCoin} است،
@@ -168,7 +166,7 @@ const SectionHead = () => {
               قبل
               {marketdata.percentageChange > 0 ? " افزایش" : "  کاهش "} یافته
               است.
-            </Typography>
+            </p>
           </div>
         </div>
       )}

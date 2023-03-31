@@ -14,26 +14,29 @@ const NftList = ({ data }) => {
     <table className="table-auto w-[98%] whitespace-nowrap m-auto overflow-x-auto ">
       <thead>
         <tr>
-          <th className="text-center lg:text-start text-gray-500 dark:text-gray-300 pb-2 pl-6 lg:p-2 font-medium text-sm ">
+          <th className="text-center lg:text-start text-gray-500  pb-2 pl-6 lg:p-2 font-medium text-sm ">
             دنبال کردن
           </th>
           <th
-            className={`text-start  dark:bg-black  text-gray-500 dark:text-gray-300 pb-2 pl-6 lg:p-2 font-medium text-sm`}
+            className={`text-start   text-gray-500  pb-2 pl-6 lg:p-2 font-medium text-sm`}
           >
             نام
           </th>
 
-          <th className="text-start text-gray-500 dark:text-gray-300 pb-2 pl-6 font-medium text-sm  ">
+          <th className="text-start text-gray-500  pb-2 pl-6 font-medium text-sm  ">
             پلتفرم
           </th>
-          <th className="text-start pr-2 text-gray-500 dark:text-gray-300 pb-2 pl-6 font-medium text-sm  md:table-cell">
+          <th className="text-start pr-2 text-gray-500  pb-2 pl-6 font-medium text-sm  md:table-cell">
             آدرس قرارداد
           </th>
         </tr>
       </thead>
       <tbody>
         {data.map((chain) => (
-          <tr key={chain.id} className="border-y bg-gray-50 hover:bg-gray-100 border-gray-300">
+          <tr
+            key={chain.id}
+            className="border-y bg-gray-50 hover:bg-gray-100 border-gray-300"
+          >
             <td>
               <button
                 onClick={() => {
@@ -60,29 +63,23 @@ const NftList = ({ data }) => {
                 )}
               </button>
             </td>
-            <td className="cursor-pointer whitespace-pre-wrap  ">
-              <Link
-                href="/nft/[chainId]"
-                as={`/nft/${chain.id}`}
-                className="flex items-center py-4  sm:w-auto  gap-2"
-              >
-                <div className="text-gray-400 dark:text-gray-300 font-bold text-[12px] ml-2">
-                  {chain.symbol.toLocaleUpperCase()}
-                </div>
-                {/* <img
+            <td className="cursor-pointer whitespace-pre-wrap flex items-center py-4  sm:w-auto  gap-2 ">
+              <div className="text-gray-400  font-bold text-[12px] ml-2">
+                {chain.symbol.toLocaleUpperCase()}
+              </div>
+              {/* <img
                   src={chain.symbol}
                   alt="icon"
                   width={30}
                   height={30}
                   className="rounded-full"
                 /> */}
-                <div className="text-sm font-bold">
-                  {chain.name}
-                  {/* <div className="text-gray-400 dark:text-gray-300 font-bold text-[12px] ml-2">
+              <div className="text-sm font-bold">
+                {chain.name}
+                {/* <div className="text-gray-400  font-bold text-[12px] ml-2">
                     {chain.symbol.toLocaleUpperCase()}
                   </div> */}
-                </div>
-              </Link>
+              </div>
             </td>
 
             <td>

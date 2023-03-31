@@ -113,13 +113,12 @@ const Cryptocurrency = () => {
         <div
           className={`${
             isOpen &&
-            "text-blue-600  font-bold py-4 text-xl flex justify-between items-center pr-1.5 "
+            "text-blue-600  font-bold py-4 text-xl flex justify-between items-center "
           } font-bold py-4 text-xl flex justify-between items-center`}
           onClick={() => setIsOpen((prev) => !prev)}
         >
           {" "}
           <h1>رمزارزها</h1>{" "}
-          {/* {!isOpen ? <BiChevronDown size={38} /> : <BiChevronUp size={38} />}{" "} */}
           {isOpen ? (
             <BiChevronDown className="transition-all rotate-180" size={38} />
           ) : (

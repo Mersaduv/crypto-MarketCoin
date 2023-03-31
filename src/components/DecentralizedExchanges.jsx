@@ -3,22 +3,22 @@ const DecentralizedExchanges = () => {
     <table className="table-auto w-[98%] whitespace-nowrap m-auto overflow-x-auto">
       <thead>
         <tr>
-          <th className="text-center lg:text-start text-gray-500 dark:text-gray-300 pb-2 pl-6 lg:p-2 font-medium text-sm ">
+          <th className="text-center lg:text-start text-gray-500  pb-2 pl-6 lg:p-2 font-medium text-sm ">
             #
           </th>
-          <th className="text-start  text-gray-500 dark:text-gray-300 pb-2 pl-6 lg:p-2 font-medium text-sm">
+          <th className="text-start  text-gray-500  pb-2 pl-6 lg:p-2 font-medium text-sm">
             صرافی
           </th>
-          <th className="text-start text-gray-500 dark:text-gray-300 pb-2 pl-6 font-medium text-sm">
+          <th className="text-start text-gray-500  pb-2 pl-6 font-medium text-sm">
             معاملات 24h
           </th>
-          <th className="text-start text-gray-500 dark:text-gray-300 pb-2 pl-6 font-medium text-sm  ">
+          <th className="text-start text-gray-500  pb-2 pl-6 font-medium text-sm  ">
             میزان کوینها
           </th>
-          <th className="text-start text-gray-500 dark:text-gray-300 pb-2 pl-6 font-medium text-sm  md:table-cell">
+          <th className="text-start text-gray-500  pb-2 pl-6 font-medium text-sm  md:table-cell">
             نوع معامله
           </th>
-          <th className="text-start text-gray-500 dark:text-gray-300 pb-2 pl-6 font-medium text-sm  md:table-cell">
+          <th className="text-start text-gray-500  pb-2 pl-6 font-medium text-sm  md:table-cell">
             سال تاسیس
           </th>
         </tr>

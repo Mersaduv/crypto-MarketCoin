@@ -140,7 +140,7 @@ const Projects = () => {
               <hr />
               <Link
                 href="/airdrop"
-                className="hover:bg-gray-50 inline-block w-full py-2 px-1.5"
+                className="hover:bg-gray-50 inline-block w-full border-b py-2 px-1.5"
               >
                 <AiOutlineDropbox className="ml-2" />
 

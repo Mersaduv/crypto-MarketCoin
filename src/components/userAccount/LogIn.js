@@ -12,29 +12,43 @@ const LogIn = ({ setProfileModal }) => {
   const { state, setState } = useContext(AuthState)
   const formik = useFormik({
     initialValues: {
-      name: "",
       email: "",
       password: "",
       accepted: false,
     },
+    // If needed, the naked note will be added with text, but not used in this component
+    validationSchema: Yup.object({
+
+      email: Yup.string()
+        .required("Email is Required!")
+        .email("Invalid E-mail adress."),
+      password: Yup.string()
+        .required("Password is Required!")
+        .min(8, "Password must be more than 8 characters."),
+    }),
     validateOnMount: true,
 
     onSubmit: async (values) => {
       const { email, password, accepted } = values;
-      if (accepted) {
-        Cookies.set('email', email);
-        Cookies.set('password', password);
-      }
-      if (email === state.data.email && password === state.data.password) {
-        console.log(state);
+      // const valueUser = {
+      //   email,
+      //   password,
+      // };
+      try {
+        if (accepted) {
+          Cookies.set('email', email);
+          Cookies.set('password', password);
+        }
+        if (email === state.data.email && password === state.data.password) {
+          // console.log(state);
 
-        // Login successful
-        setState({ data: state.data, register: true })
-        toast.success(`${state.data.name}  خوشآمدی`);
+          // Login successful
+          setState({ data: state.data, register: true })
+          toast.success(`${state.data.name}  خوشآمدی`);
 
-        setProfileModal(false)
-        console.log(state.register);
-      } else {
+          setProfileModal(false)
+        }
+      } catch (error) {
         // Login failed
         toast.error("دوباره تلاش کنید!");
       }
@@ -80,7 +94,7 @@ const LogIn = ({ setProfileModal }) => {
   return (
     <div className="z-30">
       <form onSubmit={formik.handleSubmit} className="mt-10 pb-5">
-        <div className="mb-3">
+        <div className="mb-4">
           <input
             type="text"
             name="email"
@@ -90,11 +104,10 @@ const LogIn = ({ setProfileModal }) => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             className={`w-full p-2 py-3 border rounded-md outline-none bg-gray-50 
-          focus:bg-white  text-[14px] ${formik.touched.email && formik.errors.email && "border-red-500"
+    focus:bg-white  text-[14px] ${formik.touched.email && formik.errors.email && "border-red-500"
               }`}
           />
         </div>
-
         <div className="mb-4">
           <input
             type="password"
@@ -105,7 +118,7 @@ const LogIn = ({ setProfileModal }) => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             className={`w-full p-2 py-3 border  rounded-md outline-none bg-gray-50 
-          focus:bg-white  text-[14px] ${formik.touched.password &&
+            focus:bg-white  text-[14px] ${formik.touched.password &&
               formik.errors.password &&
               "border-red-500"
               }`}
@@ -136,6 +149,14 @@ const LogIn = ({ setProfileModal }) => {
 
         <div className="items-center  gap-2 mt-3 sm:flex">
           <button
+            type="submit"
+            className={`w-full mt-2 p-2.5 flex-1 text-white bg-blue-500 rounded-md
+            outline-none ring-offset-2 ring-indigo-600 focus:ring-2 ${!formik.isValid && "cursor-not-allowed"
+              }`}
+          >
+            ورود
+          </button>
+          <button
             type="button"
             className="flex justify-center items-center gap-2 w-full mt-2 p-2.5 text-[14px] 
           flex-1 text-blue-500 rounded-md outline-none border ring-offset-2 ring-blue-500 
@@ -144,14 +165,7 @@ const LogIn = ({ setProfileModal }) => {
             Continue with <FaGoogle size={17} />
           </button>
 
-          <button
-            type="submit"
-            className={`w-full mt-2 p-2.5 flex-1 text-white bg-blue-500 rounded-md
-            outline-none ring-offset-2 ring-indigo-600 focus:ring-2 ${!formik.isValid && "cursor-not-allowed"
-              }`}
-          >
-            logIn
-          </button>
+
         </div>
       </form>
     </div>

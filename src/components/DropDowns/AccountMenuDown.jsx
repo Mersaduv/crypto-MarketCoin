@@ -75,22 +75,6 @@ const AccountMenuDown = () => {
 
               <Typography fontWeight={600}> ایجاد حساب دیگر</Typography>
             </Box>
-            {/* <Box
-              sx={{
-                cursor: "pointer",
-                ":hover": { backgroundColor: "#f9fafb" },
-              }}
-              width={"100%"}
-              display={"flex"}
-              alignItems={"center"}
-              gap={1}
-              paddingY={1}
-              onClick={handleClose}
-            >
-              <Logout fontSize="small" />
-
-              <Typography fontWeight={600}> خروج از حساب</Typography>
-            </Box> */}
           </Box>
         )}
       </div>

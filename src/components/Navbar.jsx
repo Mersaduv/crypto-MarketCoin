@@ -13,14 +13,12 @@ import LogIn from "./userAccount/LogIn";
 import { HiOutlineMinusSm } from "react-icons/hi";
 import CloseIcon from "@mui/icons-material/Close";
 import LanguageDropdown from "./DropDowns/LanguageDropdown";
-import { FaMoon } from "react-icons/fa";
 import StarIcon from "@mui/icons-material/Star";
 import SearchAutoComplate from "./SearchAutoComplate";
-import BasicModal from "./modals/BasicModal";
+import BasicModal from "./modals/SearchModal";
 import { Dialog, Transition } from "@headlessui/react";
 import { AuthState } from "@/src/context/AuthProvider";
 import AccountMenu from "./AccountMenu";
-import { useRouter } from "next/router";
 import Cookies from "js-cookie";
 import AccountMenuDown from "./DropDowns/AccountMenuDown";
 
@@ -67,8 +65,8 @@ const Navbar = () => {
   };
   return (
     <div className="border-y   max-w-screen-2xl bg-white m-auto flex flex-col-reverse md2:flex-col">
-      {/* header show price market  */}
       <div className="md2:flex md2:justify-between w-full font-semibold  py-1.5 border-b">
+        {/* header show price market  */}
         <div className="flex md2:flex-1 whitespace-nowrap md2:py-3   overflow-x-auto md2:overflow-x-auto gap-x-4">
           <div className="flex items-center gap-x-4">
             <div className="flex whitespace-nowrap  text-xs gap-x-2">
@@ -112,19 +110,17 @@ const Navbar = () => {
           </div>
         </div>
 
-        <div className="w-[310px] flex  items-center  border-r pr-4   gap-x-1 ">
-          <div className="w-full flex justify-end gap-x-4">
-            {/* dark mode and language  */}
-            <div className=" md2:flex hidden  justify-between items-center gap-x-2    ">
-              <FaMoon className=" text-2xl p-0.5  rounded-lg hover:shadow-lg cursor-pointer" />
-
+        <div className="w-[280px] flex  items-center  border-r pr-1   gap-x-1 ">
+          <div className="w-full flex justify-between pr-2">
+            {/*  language  */}
+            <div className=" md2:flex hidden   items-center ">
               <LanguageDropdown />
             </div>
             {/* Profile */}
             {authUser.state.register ? (
               //profile icon
               <div className="hidden md2:block">
-                <AccountMenu />
+                <AccountMenu handleLogout={handleLogout} />
               </div>
             ) : (
               <div
@@ -226,7 +222,7 @@ const Navbar = () => {
           width="100%"
           gap={2}
         >
-          <Typography variant="h6" component="div" fontWeight={600}>
+          <Typography variant="h6" fontWeight={600}>
             <Link href="/">MarketCoin</Link>
           </Typography>
           <div className="hidden md2:flex items-center py-2 ">
@@ -239,6 +235,7 @@ const Navbar = () => {
             display={{ xs: "flex", md2: "none" }}
             alignItems={"center"}
             gap={1}
+            paddingY={1}
           >
             {/* <FiSearch size="22px" /> */}
             <BasicModal />
@@ -284,11 +281,11 @@ const Navbar = () => {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <div className="fixed inset-0 bg-black bg-opacity-50" />
+              <div className="fixed inset-0 w-full  bg-black bg-opacity-50" />
             </Transition.Child>
 
             {/* menu */}
-            <div className="fixed inset-0  flex justify-center">
+            <div className="fixed inset-0 w-full  flex justify-center">
               <Transition.Child
                 as={React.Fragment}
                 enter="transition ease-in-out duration-300 transform"
@@ -300,7 +297,7 @@ const Navbar = () => {
               >
                 <Dialog.Panel className="relative flex  flex-col overflow-y-auto bg-white dark:bg-gray-800 shadow-xl w-screen">
                   {/* header  */}
-                  <div className=" sticky top-0 pl-2 flex items-center bg-white shadow justify-between ">
+                  <div className=" sticky top-0 pl-2 flex items-center z-40 bg-white shadow justify-between ">
                     {/* close button */}
                     <div className="flex flex-row-reverse p-3">
                       <button type="button" onClick={() => setOpenMenu(false)}>
@@ -321,7 +318,7 @@ const Navbar = () => {
                       </button>
                     </div>
                     {/* Link logo*/}
-                    <Link className="font-bold" href="/">
+                    <Link className="font-bold z-50" href="/">
                       MarketCoin
                     </Link>
                   </div>
@@ -330,33 +327,23 @@ const Navbar = () => {
                     <Exchanges />
                     <Projects />
                     {/* watchList  */}
-                    <Typography
-                      sx={{
-                        whiteSpace: "nowrap",
-                        gap: "2px",
-                        "&:hover": {
-                          color: "#000", // black color on hover
-                          backgroundColor: "#f5f5f5", // lighten the gray color on hover
-                        },
-                      }}
-                      component="span"
-                      alignItems="center"
-                      color="gray"
+                    <div
+                      onClick={() => setOpenMenu(false)}
+                      className="whitespace-nowrap gap-2"
                     >
                       <Link
-                        className="border-b flex py-4 mx-4"
+                        className="border-b flex items-center py-4 mx-4 hover:text-black hover:bg-gray-100 text-gray"
                         href="/watchList"
                       >
                         <StarIcon className="text-3xl ml-1" />
-                        <Typography
-                          className="text-black font-semibold"
-                          variant="h6"
-                        >
+                        <div className="text-black font-semibold">
                           فهرست شما
-                        </Typography>
+                        </div>
                       </Link>
-                    </Typography>
-                    {authUser.state.register && <AccountMenuDown />}
+                    </div>
+                    {authUser.state.register && (
+                      <AccountMenuDown handleLogout={handleLogout} />
+                    )}
 
                     {/* Profile first mobile  */}
                     {authUser.state.register ? (
@@ -393,9 +380,6 @@ const Navbar = () => {
 
                     {/* dark mode and language  */}
                     <div className="flex justify-between items-center   px-4 mt-7 gap-x-2   ">
-                      <div className="bg-gray-100 p-3 rounded-md">
-                        <FaMoon className="text-lg" />
-                      </div>
                       <div className="bg-gray-100 p-3  pr-7 rounded-md">
                         <LanguageDropdown />
                       </div>
