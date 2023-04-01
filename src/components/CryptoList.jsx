@@ -40,7 +40,7 @@ const CryptoList = ({ data }) => {
             مارکت
           </th>
           <th className="text-start pr-2 text-gray-500  pb-2 pl-6 font-medium text-sm  md:table-cell">
-            وضعیت هفته
+            حداکثر عرضه{" "}
           </th>
         </tr>
       </thead>
@@ -115,8 +115,9 @@ const CryptoList = ({ data }) => {
             </td>
             <td>
               <div className="text-[12px] lg:text-[14px] mr-2 font-bold  md:flex">
-                {/* <CoinChart coin={coin} time7d={7} /> */}
-                نمودار دردسترس نیست
+                {coin?.total_supply
+                  ? coin.total_supply.toLocaleString()
+                  : "N/A"}
               </div>
             </td>
           </tr>
@@ -125,5 +126,5 @@ const CryptoList = ({ data }) => {
     </table>
   );
 };
-
+// 19,334,000
 export default CryptoList;

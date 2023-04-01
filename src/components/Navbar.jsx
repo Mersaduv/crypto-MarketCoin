@@ -336,7 +336,7 @@ const Navbar = () => {
                         href="/watchList"
                       >
                         <StarIcon className="text-3xl ml-1" />
-                        <div className="text-black font-semibold">
+                        <div className="text-black  font-semibold">
                           فهرست شما
                         </div>
                       </Link>

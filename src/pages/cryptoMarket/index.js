@@ -1,5 +1,4 @@
 import CryptoList from "@/src/components/CryptoList";
-import { getData, getSomeData } from "@/src/services/serviceData";
 import axios from "axios";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -7,12 +6,9 @@ import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import { useRouter } from "next/router";
 import SectionHead from "@/src/components/SectionHead";
-import { fetchCoins } from "@/src/redux/cryptoSlice/cryptoSlice";
-import store from "@/src/redux/store";
-
 
 const index = ({ coinData, page }) => {
-  console.log(coinData);
+  // console.log(coinData);
   const [hasWindow, setHasWindow] = useState(false);
   const router = useRouter()
   useEffect(() => {
@@ -21,14 +17,6 @@ const index = ({ coinData, page }) => {
     }
   }, []);
 
-
-  // if (error) {
-  //   return <p>An error occurred</p>;
-  // }
-
-  // if (!coinData) {
-  //   return <p>Loading...</p>;
-  // }
   return (
 
     <div className="max-w-screen-2xl m-auto  ">
@@ -69,30 +57,6 @@ const index = ({ coinData, page }) => {
   );
 };
 // Get the data in the next.js page using getServerSideProps
-// export const getServerSideProps = async ({ query }) => {
-//   let page = +query.page || 1;
-//   const { dispatch, getState } = store;
-
-//   try {
-//     // Dispatch the action and wait for it to resolve
-//     await dispatch(fetchCoins(page)).unwrap();
-//     const coinData = getState().cryptos.coins;
-//     return {
-//       props: {
-//         coinData,
-//         page
-//       },
-//     };
-//   } catch (error) {
-//     console.error(error);
-//     return {
-//       props: {
-//         error: error.message,
-//       },
-//     };
-//   }
-// };
-
 export const getServerSideProps = async ({ query }) => {
   let page = +query.page || 1;
 

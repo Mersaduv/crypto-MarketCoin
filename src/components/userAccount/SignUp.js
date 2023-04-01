@@ -175,8 +175,7 @@ const SignUp = ({ setProfileModal }) => {
                      outline-none ring-offset-2 ring-indigo-600 focus:ring-2 ${!formik.isValid && "cursor-not-allowed"
               }`}
           >
-            ایجاد
-
+            ایجاد حساب
           </button>
 
           <button

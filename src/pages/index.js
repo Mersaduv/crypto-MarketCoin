@@ -1,11 +1,13 @@
 // import Link from "next/link";
+import SliderTrendMarket from "../components/sliderSwiper/SliderTrendMarket";
+import SliderRecentlyAdded from "../components/sliderSwiper/SliderRecentlyAdded";
+import SliderExchanges from "../components/sliderSwiper/SliderExchanges";
 import CryptoList from "../components/CryptoList";
 import SectionHead from "../components/SectionHead";
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import { useRouter } from "next/router";
 import letter from "../../public/newsletter_bg_light.svg"
-import { getData } from "../services/serviceData";
 import axios from "axios";
 import Image from "next/image";
 import { useState } from "react";
@@ -13,13 +15,14 @@ import SignUp from "../components/userAccount/SignUp";
 import LogIn from "../components/userAccount/LogIn";
 import CloseIcon from "@mui/icons-material/Close";
 import { HiOutlineMinusSm } from "react-icons/hi";
-import store from "../redux/store";
-import { fetchCoins } from "../redux/cryptoSlice/cryptoSlice";
-import Slider from "../components/Slider";
-export default function Home({ coinData, page, error }) {
+
+export default function Home({ coinData, page }) {
+  console.log(coinData);
   const [profileModal, setProfileModal] = useState(false);
   const [profileSignUp, setprofileSignUp] = useState(true);
   const [profileLogIn, setprofileLogIn] = useState(false);
+
+
   const signUpHandler = () => {
     setprofileSignUp(true);
     setprofileLogIn(false);
@@ -28,26 +31,19 @@ export default function Home({ coinData, page, error }) {
     setprofileLogIn(true);
     setprofileSignUp(false);
   };
-  // if (coinData) {
-  //   console.log(coinData);
-  // }
   const router = useRouter()
 
-  // if (error) {
-  //   return <p>An error occurred</p>;
-  // }
-
-  // if (!coinData) {
-  //   return <p>Loading...</p>;
-  // }
   return (
     <div dir="rtl">
 
       <div className="mt-8 mb-6 mx-2">
         <SectionHead />
 
-        <div className="-my-14 hidden md2:block ">
-          <Slider />
+        <div className="-my-14 hidden md2:flex ">
+          {/* The reason that 3 separate components are created is because the bug exists does not allow the sliders to become the next auto slider */}
+          <SliderTrendMarket />
+          <SliderRecentlyAdded />
+          <SliderExchanges />
         </div>
 
       </div>
@@ -147,52 +143,30 @@ export default function Home({ coinData, page, error }) {
 }
 
 // Get the data in the next.js page using getServerSideProps
+
 export const getServerSideProps = async ({ query }) => {
   let page = +query.page || 1;
-  const { dispatch, getState } = store;
 
   try {
-    // Dispatch the action and wait for it to resolve
-    await dispatch(fetchCoins(page))
-    const coinData = getState().cryptos.coins;
+    const result = await axios.get(
+      `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=${page}&sparkline=false`
+    );
+    const coinData = result.data;
+
     return {
       props: {
         coinData,
-        page
+        page,
       },
     };
   } catch (error) {
     console.error(error);
+
     return {
       props: {
-        error: error,
+        coinData: [],
+        page,
       },
     };
   }
 };
-// export const getServerSideProps = async ({ query }) => {
-//   let page = +query.page || 1;
-
-//   try {
-//     const result = await axios.get(
-//       `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=${page}&sparkline=false`
-//     );
-//     const coinData = result.data;
-
-//     return {
-//       props: {
-//         coinData,
-//         page,
-//       },
-//     };
-//   } catch (error) {
-//     console.error(error);
-
-//     return {
-//       props: {
-//         coinData: [],
-//         page,
-//       },
-//     };
-//   }
-// };

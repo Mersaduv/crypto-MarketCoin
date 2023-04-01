@@ -120,7 +120,7 @@ export default function SearchAutoComplate() {
   return (
     <div dir="rtl" className="autoComplated w-full flex items-center gap-x-2">
       <Link href="/watchList">
-        <div className="hidden md:flex p-3 whitespace-nowrap sm:gap-2 hover:text-black hover:bg-gray-100 text-gray">
+        <div className="hidden md:flex items-center p-3 text-gray-600 rounded-md whitespace-nowrap sm:gap-1 hover:text-black hover:bg-gray-100 text-gray">
           <StarIcon fontSize="small" />
           <span className="text-sm font-medium">فهرست شما</span>
         </div>

@@ -1,6 +1,6 @@
 import { createTheme, ThemeProvider } from "@mui/material"
 import { createContext, useMemo, useState } from "react"
-//!!!!!!!!! Dark Mode is not used in this project creating optional dark mode=
+//!!!!!!!!! Dark Mode is not used in this project creating optional dark mode
 export const ColorModeContext = createContext({
     toggleMode: () => { },
     mode: 'light'
